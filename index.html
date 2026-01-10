@@ -1,0 +1,309 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red River Bar-B-Que & Grill</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+        }
+        h1, h2, h3, h4, .font-oswald {
+            font-family: 'Oswald', sans-serif;
+        }
+        .chalkboard-texture {
+            background-image: url('https://www.transparenttextures.com/patterns/dark-wood.png');
+            background-color: #1a1a1a;
+        }
+        .diagonal-stripes {
+            background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px);
+            background-color: #222;
+        }
+        /* Custom jagged edge styling for the divider */
+        .jagged-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .jagged-divider svg {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 60px;
+        }
+        .jagged-divider path {
+            fill: #222;
+        }
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cc0000;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body class="bg-gray-100 overflow-x-hidden min-h-screen flex flex-col">
+
+    <!-- HEADER SECTION -->
+    <header class="w-full">
+        <!-- Top Utility Bar -->
+        <div class="bg-[#cc0000] border-b-4 border-[#880000]">
+            <div class="max-w-7xl mx-auto flex justify-center md:justify-end items-center py-2 px-4 text-white text-[10px] md:text-[11px] font-bold uppercase tracking-wider space-x-4 md:space-x-6">
+                <a href="#" class="flex items-center hover:underline whitespace-nowrap">
+                    GIFT CARDS <i data-lucide="gift" class="ml-1 w-3 h-3 md:w-4 md:h-4"></i>
+                </a>
+                <a href="#" class="flex items-center hover:underline whitespace-nowrap">
+                    ORDER ONLINE <i data-lucide="shopping-cart" class="ml-1 w-3 h-3 md:w-4 md:h-4"></i>
+                </a>
+                <a href="#" class="flex items-center hover:underline whitespace-nowrap">
+                    E-CLUB <i data-lucide="mail" class="ml-1 w-3 h-3 md:w-4 md:h-4"></i>
+                </a>
+                <a href="#" class="flex items-center hover:underline whitespace-nowrap">
+                    REWARDS <i data-lucide="trophy" class="ml-1 w-3 h-3 md:w-4 md:h-4"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Branding Bar -->
+        <div class="chalkboard-texture py-6 px-4 shadow-xl relative overflow-hidden">
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+                <!-- Logo Section -->
+                <div class="flex items-center space-x-4 mb-6 md:mb-0">
+                    <div class="flex flex-col items-center">
+                        <h1 class="text-[#cc0000] text-4xl md:text-5xl font-oswald font-black italic uppercase leading-none drop-shadow-md">
+                            Red River
+                        </h1>
+                        <div class="flex items-baseline space-x-1">
+                            <span class="text-white text-xl md:text-2xl font-oswald uppercase tracking-widest font-bold">BAR-B-QUE</span>
+                            <span class="text-[#5dade2] text-sm md:text-lg font-bold italic">& Grill</span>
+                        </div>
+                    </div>
+                    
+                    <div class="border-l border-gray-600 h-16 mx-4 hidden md:block"></div>
+                    
+                    <div class="bg-transparent border-2 border-yellow-500 rounded-sm p-1 px-2 flex flex-col items-center">
+                        <span class="text-yellow-500 text-[8px] font-bold">Est. 2002</span>
+                        <div class="text-white text-lg font-oswald font-bold leading-tight uppercase text-center">
+                            RED RIVER
+                        </div>
+                        <span class="text-white text-[8px] font-bold uppercase border-t border-gray-500 w-full text-center mt-1">BAR-B-QUE & BURGER</span>
+                    </div>
+                </div>
+
+                <!-- Navigation Section -->
+                <nav class="flex flex-col items-center md:items-end w-full md:w-auto">
+                    <ul class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-3 text-white font-oswald font-bold uppercase text-sm md:text-base tracking-wide text-center">
+                        <li><a href="#" class="hover:text-yellow-500 transition-colors">LOCATIONS & MENUS</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition-colors">CATERING</a></li>
+                        <li><a href="#" class="hover:text-yellow-500 transition-colors">PARTY ROOM</a></li>
+                        <li class="relative group">
+                            <a href="#" class="hover:text-yellow-500 transition-colors flex items-center justify-center">CAREERS <span class="ml-1 text-[8px]">▼</span></a>
+                        </li>
+                        <li><a href="#" class="hover:text-yellow-500 transition-colors">COMMUNITY</a></li>
+                    </ul>
+                    <div class="mt-4 md:mt-2 flex space-x-4 text-[11px] font-bold">
+                        <a href="#" class="text-red-500 hover:underline">iPhone App</a>
+                        <a href="#" class="text-red-500 hover:underline">Android App</a>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section class="relative h-[300px] md:h-[600px] w-full overflow-hidden">
+            <img 
+                src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=2000" 
+                alt="Delicious BBQ Spread" 
+                class="w-full h-full object-cover"
+            />
+            <div class="absolute inset-0 bg-black/10"></div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section class="bg-white py-16 px-4 relative">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-gray-800 text-3xl md:text-4xl font-oswald font-bold uppercase tracking-tight mb-8 relative inline-block">
+                    LOCAL FAVORITE SINCE 2002
+                    <div class="h-1 bg-yellow-500 w-1/2 mx-auto mt-1"></div>
+                </h2>
+                
+                <p class="text-gray-600 leading-relaxed text-base md:text-lg mb-6">
+                    Our original location in League City since 2002. We offer a family friendly dining experience with a large dining room, private banquet rooms, outdoor dining and a play area for kids to enjoy. Come enjoy some Texas bar-b-que and home cooking! We also offer catering for any type of event & size. See our catering menu for more details. See you soon!
+                </p>
+            </div>
+
+            <!-- Jagged Divider -->
+            <div class="jagged-divider">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                    <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5,73.84-4.36,147.54,16.88,218.2,35.26,69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-1.42,1200,34.33V0Z"></path>
+                </svg>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer class="diagonal-stripes py-16 px-4 text-gray-300 relative">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-12 items-start">
+            
+            <!-- League City Column -->
+            <div class="flex flex-col space-y-4 text-center md:text-left items-center md:items-start">
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase">Red River BBQ & Grill</h3>
+                    <p class="text-sm font-bold text-gray-400">League City, Texas</p>
+                    <p class="text-sm">Phone: 281.332.8086</p>
+                    <p class="text-sm italic">1911 E. Main St.</p>
+                    <p class="text-sm italic">League City, TX 77573</p>
+                </div>
+                <div class="pt-4">
+                    <a href="#" class="flex items-center text-[10px] font-bold uppercase tracking-widest hover:text-white transition-colors">
+                        <i data-lucide="users" class="mr-2 w-4 h-4"></i> CAREERS <span class="ml-1 text-[8px]">👫</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- League City Hours -->
+            <div class="flex flex-col items-center space-y-4 text-center">
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase">League City Hours:</h3>
+                    <p class="text-sm"><span class="font-bold">Sun. – Thurs.:</span> 11am-9:00pm</p>
+                    <p class="text-sm"><span class="font-bold">Fri. & Sat.:</span> 11am-9:30pm</p>
+                </div>
+                <a href="#" class="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition-colors">
+                    <i data-lucide="facebook" class="w-5 h-5 fill-current"></i>
+                </a>
+            </div>
+
+            <!-- Rewards Box (Center) -->
+            <div class="border-2 border-dashed border-gray-500 rounded-lg p-6 flex flex-col items-center justify-center text-center space-y-4 bg-black/40">
+                <h3 class="text-white font-oswald text-xl uppercase font-bold">Red River Restaurants Rewards</h3>
+                <p class="text-xs">Earn points, unlock rewards, get a birthday bonus.</p>
+                <a href="#" class="border-2 border-white px-4 py-2 text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center">
+                    SIGN UP FOR REWARDS 🎁
+                </a>
+            </div>
+
+            <!-- Katy Hours -->
+            <div class="flex flex-col items-center space-y-4 text-center">
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase">Katy Hours:</h3>
+                    <p class="text-sm"><span class="font-bold">Sun. – Thurs.:</span> 11am-9:00pm</p>
+                    <p class="text-sm"><span class="font-bold">Fri. & Sat.:</span> 11am-9:30pm</p>
+                </div>
+                <a href="#" class="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition-colors">
+                    <i data-lucide="facebook" class="w-5 h-5 fill-current"></i>
+                </a>
+            </div>
+
+            <!-- Katy Location -->
+            <div class="flex flex-col space-y-4 text-center md:text-right items-center md:items-end">
+                <div>
+                    <h3 class="text-white font-bold text-sm uppercase">Red River BBQ & Grill</h3>
+                    <p class="text-sm font-bold text-gray-400">Katy, Texas</p>
+                    <p class="text-sm">Phone: 281.578.3800</p>
+                    <p class="text-sm italic">1711 S Mason Rd.</p>
+                    <p class="text-sm italic">Katy, TX 77450</p>
+                </div>
+                <div class="pt-4">
+                    <a href="#" class="flex items-center text-[10px] font-bold uppercase tracking-widest hover:text-white transition-colors">
+                        CAREERS <span class="ml-1 text-[8px]">👫</span> <i data-lucide="users" class="ml-2 w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Logos Section -->
+        <div class="mt-16 flex flex-col md:flex-row justify-center items-center gap-12 border-t border-white/5 pt-12">
+            <!-- Main BBQ Logo -->
+            <div class="flex flex-col items-center">
+                <div class="w-32 h-32 border-4 border-red-600 rounded-full flex flex-col items-center justify-center p-2 bg-white/5 relative">
+                    <div class="text-red-600 font-oswald text-center leading-tight">
+                        <div class="text-[10px] font-bold uppercase tracking-tighter">RED RIVER</div>
+                        <div class="text-2xl font-black italic">B.B.Q.</div>
+                        <div class="text-[10px] font-bold uppercase border-t border-red-600 pt-1">and Grill</div>
+                    </div>
+                    <div class="absolute inset-0 border border-gray-600 rounded-full m-1 pointer-events-none"></div>
+                    <div class="text-[8px] absolute bottom-2 font-bold italic text-gray-400">est. 2002</div>
+                </div>
+            </div>
+
+            <!-- Cantina Logo -->
+            <div class="flex flex-col items-center text-center">
+                <div class="text-[#00a79d] flex flex-col items-center">
+                    <div class="text-sm font-oswald font-bold uppercase tracking-[0.2em]">EST. 2017</div>
+                    <div class="text-4xl md:text-5xl font-oswald font-black italic uppercase leading-none mt-1">
+                        RED RIVER
+                    </div>
+                    <div class="text-3xl md:text-4xl font-oswald italic uppercase tracking-widest -mt-1">
+                        Cantina
+                    </div>
+                    <div class="text-[10px] font-bold text-gray-400 mt-2 uppercase tracking-widest flex flex-wrap justify-center items-center">
+                        TEX-MEX <span class="mx-2 hidden md:inline">•</span> FAJITAS <span class="mx-2 hidden md:inline">•</span> MARGARITAS
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="mt-12 text-center text-[10px] text-gray-500 uppercase tracking-widest">
+            &copy; 2024 Red River Bar-B-Que & Grill. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- SCROLL TO TOP BUTTON -->
+    <button 
+        id="scroll-to-top"
+        class="fixed bottom-8 right-4 md:right-8 bg-[#1a1a1a] text-white p-2 border border-gray-600 hover:bg-red-600 transition-all opacity-0 pointer-events-none translate-y-4"
+        title="Go to top"
+    >
+        <i data-lucide="arrow-up" class="w-5 h-5"></i>
+    </button>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Scroll to Top Logic
+        const scrollBtn = document.getElementById('scroll-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+                scrollBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            } else {
+                scrollBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+                scrollBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+            }
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
