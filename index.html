@@ -8,6 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
+        * {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: 'Open Sans', sans-serif;
         }
@@ -48,39 +51,317 @@
             background: #1a1a1a;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cc0000;
+            background: linear-gradient(180deg, #cc0000, #880000);
+            border-radius: 4px;
+        }
+        
+        /* Modern Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(204, 0, 0, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(204, 0, 0, 0.8), 0 0 60px rgba(204, 0, 0, 0.4);
+            }
+        }
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+        @keyframes smoke {
+            0% {
+                opacity: 0;
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                opacity: 0.3;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) scale(2);
+            }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-fadeInDown {
+            animation: fadeInDown 0.8s ease-out forwards;
+        }
+        .animate-scaleIn {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+        .animate-slideInLeft {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+        .animate-slideInRight {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        .animate-pulse-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+        
+        /* Delay utilities */
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-light {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Modern button styles */
+        .btn-modern {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #cc0000 0%, #880000 100%);
+        }
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+        .btn-modern:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(204, 0, 0, 0.4);
+        }
+        
+        .btn-outline-modern {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #fff;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-outline-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: #fff;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: -1;
+        }
+        .btn-outline-modern:hover::before {
+            width: 100%;
+        }
+        .btn-outline-modern:hover {
+            color: #1a1a1a;
+            transform: scale(1.05);
+        }
+        
+        /* Nav link hover effect */
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #eab308, #f59e0b);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Card hover effects */
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Hero parallax image */
+        .hero-image {
+            transition: transform 0.1s ease-out;
+        }
+        
+        /* Smoke effect elements */
+        .smoke {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: smoke 4s ease-out infinite;
+        }
+        
+        /* Shimmer text effect */
+        .shimmer-text {
+            background: linear-gradient(90deg, #cc0000 0%, #ff4444 25%, #cc0000 50%, #ff4444 75%, #cc0000 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        /* Location card styles */
+        .location-card {
+            transition: all 0.3s ease;
+        }
+        .location-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            margin: -16px;
+        }
+        
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Gradient borders */
+        .gradient-border {
+            position: relative;
+        }
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 2px;
+            background: linear-gradient(135deg, #cc0000, #eab308, #cc0000);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
         }
     </style>
 </head>
 <body class="bg-gray-100 overflow-x-hidden min-h-screen flex flex-col">
 
     <!-- HEADER SECTION -->
-    <header class="w-full">
+    <header class="w-full sticky top-0 z-50">
         <!-- Top Utility Bar -->
-        <div class="bg-[#cc0000] border-b-4 border-[#880000]">
+        <div class="bg-gradient-to-r from-[#cc0000] via-[#dd1111] to-[#cc0000] border-b-4 border-[#880000] shadow-lg">
             <div class="max-w-7xl mx-auto flex justify-center md:justify-end items-center py-2 px-4 text-white text-[10px] md:text-[11px] font-bold uppercase tracking-wider space-x-4 md:space-x-6">
-                <a href="#" class="flex items-center hover:underline whitespace-nowrap">
-                    GIFT CARDS <i data-lucide="gift" class="ml-1 w-3 h-3 md:w-4 md:h-4"></i>
+                <a href="#" class="flex items-center hover:scale-110 transition-transform duration-300 whitespace-nowrap group">
+                    GIFT CARDS <i data-lucide="gift" class="ml-1 w-3 h-3 md:w-4 md:h-4 group-hover:animate-bounce"></i>
                 </a>
-                <a href="#" class="flex items-center hover:underline whitespace-nowrap">
-                    ORDER ONLINE <i data-lucide="shopping-cart" class="ml-1 w-3 h-3 md:w-4 md:h-4"></i>
+                <a href="#" class="flex items-center hover:scale-110 transition-transform duration-300 whitespace-nowrap group">
+                    ORDER ONLINE <i data-lucide="shopping-cart" class="ml-1 w-3 h-3 md:w-4 md:h-4 group-hover:animate-bounce"></i>
                 </a>
-                <a href="#" class="flex items-center hover:underline whitespace-nowrap">
-                    E-CLUB <i data-lucide="mail" class="ml-1 w-3 h-3 md:w-4 md:h-4"></i>
+                <a href="#" class="flex items-center hover:scale-110 transition-transform duration-300 whitespace-nowrap group">
+                    E-CLUB <i data-lucide="mail" class="ml-1 w-3 h-3 md:w-4 md:h-4 group-hover:animate-bounce"></i>
                 </a>
-                <a href="#" class="flex items-center hover:underline whitespace-nowrap">
-                    REWARDS <i data-lucide="trophy" class="ml-1 w-3 h-3 md:w-4 md:h-4"></i>
+                <a href="#" class="flex items-center hover:scale-110 transition-transform duration-300 whitespace-nowrap group">
+                    REWARDS <i data-lucide="trophy" class="ml-1 w-3 h-3 md:w-4 md:h-4 group-hover:animate-bounce"></i>
                 </a>
             </div>
         </div>
 
         <!-- Main Branding Bar -->
-        <div class="chalkboard-texture py-6 px-4 shadow-xl relative overflow-hidden">
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+        <div class="chalkboard-texture py-6 px-4 shadow-2xl relative overflow-hidden">
+            <!-- Subtle animated background glow -->
+            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent opacity-50"></div>
+            
+            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center relative z-10">
                 <!-- Logo Section -->
-                <div class="flex items-center space-x-4 mb-6 md:mb-0">
-                    <div class="flex flex-col items-center">
-                        <h1 class="text-[#cc0000] text-4xl md:text-5xl font-oswald font-black italic uppercase leading-none drop-shadow-md">
+                <div class="flex items-center space-x-4 mb-6 md:mb-0 animate-fadeInDown">
+                    <div class="flex flex-col items-center group cursor-pointer">
+                        <h1 class="shimmer-text text-4xl md:text-5xl font-oswald font-black italic uppercase leading-none drop-shadow-md transition-transform duration-300 group-hover:scale-105">
                             Red River
                         </h1>
                         <div class="flex items-baseline space-x-1">
@@ -91,8 +372,8 @@
                     
                     <div class="border-l border-gray-600 h-16 mx-4 hidden md:block"></div>
                     
-                    <div class="bg-transparent border-2 border-yellow-500 rounded-sm p-1 px-2 flex flex-col items-center">
-                        <span class="text-yellow-500 text-[8px] font-bold">Est. 2002</span>
+                    <div class="glass rounded-lg p-2 px-3 flex flex-col items-center transition-all duration-300 hover:scale-105 hover:border-yellow-400 border-2 border-yellow-500/50 animate-float">
+                        <span class="text-yellow-400 text-[8px] font-bold">Est. 2002</span>
                         <div class="text-white text-lg font-oswald font-bold leading-tight uppercase text-center">
                             RED RIVER
                         </div>
@@ -101,19 +382,23 @@
                 </div>
 
                 <!-- Navigation Section -->
-                <nav class="flex flex-col items-center md:items-end w-full md:w-auto">
+                <nav class="flex flex-col items-center md:items-end w-full md:w-auto animate-fadeInDown delay-200" style="opacity: 0; animation-fill-mode: forwards;">
                     <ul class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-3 text-white font-oswald font-bold uppercase text-sm md:text-base tracking-wide text-center">
-                        <li><a href="#" class="hover:text-yellow-500 transition-colors">LOCATIONS & MENUS</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition-colors">CATERING</a></li>
-                        <li><a href="#" class="hover:text-yellow-500 transition-colors">PARTY ROOM</a></li>
+                        <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">LOCATIONS & MENUS</a></li>
+                        <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">CATERING</a></li>
+                        <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">PARTY ROOM</a></li>
                         <li class="relative group">
-                            <a href="#" class="hover:text-yellow-500 transition-colors flex items-center justify-center">CAREERS <span class="ml-1 text-[8px]">▼</span></a>
+                            <a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300 flex items-center justify-center">CAREERS <span class="ml-1 text-[8px] transition-transform duration-300 group-hover:rotate-180">▼</span></a>
                         </li>
-                        <li><a href="#" class="hover:text-yellow-500 transition-colors">COMMUNITY</a></li>
+                        <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">COMMUNITY</a></li>
                     </ul>
                     <div class="mt-4 md:mt-2 flex space-x-4 text-[11px] font-bold">
-                        <a href="#" class="text-red-500 hover:underline">iPhone App</a>
-                        <a href="#" class="text-red-500 hover:underline">Android App</a>
+                        <a href="#" class="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 hover:gap-2">
+                            <i data-lucide="smartphone" class="w-3 h-3"></i> iPhone App
+                        </a>
+                        <a href="#" class="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 hover:gap-2">
+                            <i data-lucide="smartphone" class="w-3 h-3"></i> Android App
+                        </a>
                     </div>
                 </nav>
             </div>
