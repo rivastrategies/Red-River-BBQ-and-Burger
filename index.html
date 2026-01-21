@@ -328,59 +328,92 @@
             -webkit-mask-composite: xor;
             mask-composite: exclude;
         }
+        
+        /* Mobile Menu Hamburger Animation */
+        .menu-open .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        .menu-open .hamburger-line:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        .menu-open .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Mobile menu open state */
+        .mobile-menu-active {
+            overflow: hidden;
+        }
+        .mobile-menu-active #mobile-menu-overlay {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .mobile-menu-active #mobile-menu {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="bg-gray-100 overflow-x-hidden min-h-screen flex flex-col">
 
     <!-- HEADER SECTION -->
     <header class="w-full sticky top-0 z-50">
-        <!-- Top Utility Bar -->
-        <div class="bg-gradient-to-r from-[#cc0000] via-[#dd1111] to-[#cc0000] border-b-4 border-[#880000] shadow-lg">
-            <div class="max-w-7xl mx-auto flex justify-center md:justify-end items-center py-2 px-4 text-white text-[10px] md:text-[11px] font-bold uppercase tracking-wider space-x-4 md:space-x-6">
+        <!-- Top Utility Bar - Hidden on mobile, visible on desktop -->
+        <div class="hidden md:block bg-gradient-to-r from-[#cc0000] via-[#dd1111] to-[#cc0000] border-b-4 border-[#880000] shadow-lg">
+            <div class="max-w-7xl mx-auto flex justify-end items-center py-2 px-4 text-white text-[11px] font-bold uppercase tracking-wider space-x-6">
                 <a href="#" class="flex items-center hover:scale-110 transition-transform duration-300 whitespace-nowrap group">
-                    GIFT CARDS <i data-lucide="gift" class="ml-1 w-3 h-3 md:w-4 md:h-4 group-hover:animate-bounce"></i>
+                    GIFT CARDS <i data-lucide="gift" class="ml-1 w-4 h-4 group-hover:animate-bounce"></i>
                 </a>
                 <a href="#" class="flex items-center hover:scale-110 transition-transform duration-300 whitespace-nowrap group">
-                    ORDER ONLINE <i data-lucide="shopping-cart" class="ml-1 w-3 h-3 md:w-4 md:h-4 group-hover:animate-bounce"></i>
+                    ORDER ONLINE <i data-lucide="shopping-cart" class="ml-1 w-4 h-4 group-hover:animate-bounce"></i>
                 </a>
                 <a href="#" class="flex items-center hover:scale-110 transition-transform duration-300 whitespace-nowrap group">
-                    E-CLUB <i data-lucide="mail" class="ml-1 w-3 h-3 md:w-4 md:h-4 group-hover:animate-bounce"></i>
+                    E-CLUB <i data-lucide="mail" class="ml-1 w-4 h-4 group-hover:animate-bounce"></i>
                 </a>
                 <a href="#" class="flex items-center hover:scale-110 transition-transform duration-300 whitespace-nowrap group">
-                    REWARDS <i data-lucide="trophy" class="ml-1 w-3 h-3 md:w-4 md:h-4 group-hover:animate-bounce"></i>
+                    REWARDS <i data-lucide="trophy" class="ml-1 w-4 h-4 group-hover:animate-bounce"></i>
                 </a>
             </div>
         </div>
 
         <!-- Main Branding Bar -->
-        <div class="chalkboard-texture py-6 px-4 shadow-2xl relative overflow-hidden">
+        <div class="chalkboard-texture py-3 md:py-6 px-4 shadow-2xl relative overflow-hidden">
             <!-- Subtle animated background glow -->
             <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent opacity-50"></div>
             
-            <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center relative z-10">
+            <div class="max-w-7xl mx-auto flex justify-between items-center relative z-10">
                 <!-- Logo Section -->
-                <div class="flex items-center space-x-4 mb-6 md:mb-0 animate-fadeInDown">
+                <div class="flex items-center animate-fadeInDown">
                     <a href="#" class="group cursor-pointer">
                         <img 
                             src="images/Red-River-BBQ-LogoOGWBURGER.png" 
                             alt="Red River Bar-B-Que & Grill" 
-                            class="h-20 md:h-28 w-auto transition-transform duration-300 group-hover:scale-105 drop-shadow-lg"
+                            class="h-14 md:h-28 w-auto transition-transform duration-300 group-hover:scale-105 drop-shadow-lg"
                         />
                     </a>
                 </div>
 
-                <!-- Navigation Section -->
-                <nav class="flex flex-col items-center md:items-end w-full md:w-auto animate-fadeInDown delay-200" style="opacity: 0; animation-fill-mode: forwards;">
-                    <ul class="flex flex-wrap justify-center md:justify-end gap-x-6 gap-y-3 text-white font-oswald font-bold uppercase text-sm md:text-base tracking-wide text-center">
+                <!-- Mobile Menu Button -->
+                <button 
+                    id="mobile-menu-btn"
+                    class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-all"
+                    aria-label="Toggle menu"
+                >
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded my-1.5 transition-all duration-300"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+                </button>
+
+                <!-- Desktop Navigation Section -->
+                <nav class="hidden md:flex flex-col items-end animate-fadeInDown delay-200" style="opacity: 0; animation-fill-mode: forwards;">
+                    <ul class="flex gap-x-6 text-white font-oswald font-bold uppercase text-base tracking-wide">
                         <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">LOCATIONS & MENUS</a></li>
                         <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">CATERING</a></li>
                         <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">PARTY ROOM</a></li>
-                        <li class="relative group">
-                            <a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300 flex items-center justify-center">CAREERS <span class="ml-1 text-[8px] transition-transform duration-300 group-hover:rotate-180">▼</span></a>
-                        </li>
+                        <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">CAREERS</a></li>
                         <li><a href="#" class="nav-link hover:text-yellow-400 transition-all duration-300">COMMUNITY</a></li>
                     </ul>
-                    <div class="mt-4 md:mt-2 flex space-x-4 text-[11px] font-bold">
+                    <div class="mt-2 flex space-x-4 text-[11px] font-bold">
                         <a href="#" class="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 hover:gap-2">
                             <i data-lucide="smartphone" class="w-3 h-3"></i> iPhone App
                         </a>
@@ -392,6 +425,101 @@
             </div>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[280px] bg-[#1a1a1a] z-[70] transform translate-x-full transition-transform duration-300 ease-out shadow-2xl">
+        <!-- Menu Header -->
+        <div class="flex items-center justify-between p-4 border-b border-white/10">
+            <span class="text-white font-oswald font-bold text-lg uppercase">Menu</span>
+            <button id="mobile-menu-close" class="w-10 h-10 flex items-center justify-center rounded-lg bg-white/10 hover:bg-red-600 transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-white"></i>
+            </button>
+        </div>
+
+        <!-- Menu Content -->
+        <nav class="p-4">
+            <!-- Main Navigation -->
+            <ul class="space-y-1">
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-white/10 transition-all">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-red-500"></i>
+                        Locations & Menus
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-white/10 transition-all">
+                        <i data-lucide="utensils" class="w-5 h-5 text-red-500"></i>
+                        Catering
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-white/10 transition-all">
+                        <i data-lucide="party-popper" class="w-5 h-5 text-red-500"></i>
+                        Party Room
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-white/10 transition-all">
+                        <i data-lucide="briefcase" class="w-5 h-5 text-red-500"></i>
+                        Careers
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-white/10 transition-all">
+                        <i data-lucide="heart" class="w-5 h-5 text-red-500"></i>
+                        Community
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Divider -->
+            <div class="my-4 border-t border-white/10"></div>
+
+            <!-- Quick Actions -->
+            <ul class="space-y-1">
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-bold uppercase text-sm tracking-wide rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 transition-all">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        Order Online
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-bold uppercase text-sm tracking-wide rounded-lg hover:bg-white/10 transition-all">
+                        <i data-lucide="gift" class="w-5 h-5 text-yellow-500"></i>
+                        Gift Cards
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-bold uppercase text-sm tracking-wide rounded-lg hover:bg-white/10 transition-all">
+                        <i data-lucide="mail" class="w-5 h-5 text-yellow-500"></i>
+                        E-Club
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="flex items-center gap-3 px-4 py-3 text-white font-bold uppercase text-sm tracking-wide rounded-lg hover:bg-white/10 transition-all">
+                        <i data-lucide="trophy" class="w-5 h-5 text-yellow-500"></i>
+                        Rewards
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Divider -->
+            <div class="my-4 border-t border-white/10"></div>
+
+            <!-- App Links -->
+            <div class="flex gap-2">
+                <a href="#" class="flex-1 flex items-center justify-center gap-2 px-3 py-2 text-white text-xs font-bold uppercase rounded-lg bg-white/5 hover:bg-white/10 transition-all">
+                    <i data-lucide="smartphone" class="w-4 h-4"></i> iPhone
+                </a>
+                <a href="#" class="flex-1 flex items-center justify-center gap-2 px-3 py-2 text-white text-xs font-bold uppercase rounded-lg bg-white/5 hover:bg-white/10 transition-all">
+                    <i data-lucide="smartphone" class="w-4 h-4"></i> Android
+                </a>
+            </div>
+        </nav>
+    </div>
 
     <main class="flex-grow">
         <!-- HERO SECTION -->
@@ -431,13 +559,6 @@
                     <a href="#about" class="btn-outline-modern px-8 py-4 text-white font-oswald font-bold uppercase tracking-wider rounded-lg relative z-10">
                         Our Story
                     </a>
-                </div>
-            </div>
-            
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-                <div class="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center pt-2">
-                    <div class="w-1.5 h-3 bg-white/70 rounded-full animate-pulse"></div>
                 </div>
             </div>
         </section>
@@ -735,6 +856,48 @@
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
             });
+        });
+
+        // ===== Mobile Menu Toggle =====
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const body = document.body;
+
+        const openMobileMenu = () => {
+            body.classList.add('mobile-menu-active');
+            mobileMenuBtn.classList.add('menu-open');
+            // Re-initialize icons in mobile menu
+            lucide.createIcons();
+        };
+
+        const closeMobileMenu = () => {
+            body.classList.remove('mobile-menu-active');
+            mobileMenuBtn.classList.remove('menu-open');
+        };
+
+        mobileMenuBtn.addEventListener('click', openMobileMenu);
+        mobileMenuClose.addEventListener('click', closeMobileMenu);
+        mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+
+        // Close menu when clicking a link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // Close menu on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && body.classList.contains('mobile-menu-active')) {
+                closeMobileMenu();
+            }
+        });
+
+        // Close menu on window resize to desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768 && body.classList.contains('mobile-menu-active')) {
+                closeMobileMenu();
+            }
         });
     </script>
 </body>
