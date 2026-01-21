@@ -407,13 +407,51 @@
 
     <main class="flex-grow">
         <!-- HERO SECTION -->
-        <section class="relative h-[300px] md:h-[600px] w-full overflow-hidden">
+        <section class="relative h-[400px] md:h-[700px] w-full overflow-hidden" id="hero">
+            <!-- Parallax Background Image -->
             <img 
                 src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=2000" 
                 alt="Delicious BBQ Spread" 
-                class="w-full h-full object-cover"
+                class="hero-image w-full h-full object-cover scale-110"
+                id="hero-image"
             />
-            <div class="absolute inset-0 bg-black/10"></div>
+            
+            <!-- Gradient Overlay -->
+            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/70"></div>
+            <div class="absolute inset-0 bg-gradient-to-r from-red-900/30 via-transparent to-red-900/30"></div>
+            
+            <!-- Animated Smoke Effects -->
+            <div class="smoke" style="left: 20%; bottom: 30%; animation-delay: 0s;"></div>
+            <div class="smoke" style="left: 50%; bottom: 20%; animation-delay: 1s;"></div>
+            <div class="smoke" style="left: 75%; bottom: 25%; animation-delay: 2s;"></div>
+            
+            <!-- Hero Content -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+                <div class="animate-fadeInUp">
+                    <span class="text-yellow-400 font-oswald text-sm md:text-lg uppercase tracking-[0.3em] mb-2 block">Welcome to</span>
+                </div>
+                <h2 class="text-white text-5xl md:text-8xl font-oswald font-black uppercase leading-none mb-4 animate-fadeInUp delay-100" style="opacity: 0; animation-fill-mode: forwards; text-shadow: 4px 4px 8px rgba(0,0,0,0.5);">
+                    Red River <span class="text-[#cc0000]">BBQ</span>
+                </h2>
+                <p class="text-white/90 text-lg md:text-2xl font-light max-w-2xl mb-8 animate-fadeInUp delay-200" style="opacity: 0; animation-fill-mode: forwards;">
+                    Authentic Texas Bar-B-Que Since 2002
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 animate-fadeInUp delay-300" style="opacity: 0; animation-fill-mode: forwards;">
+                    <a href="#" class="btn-modern px-8 py-4 text-white font-oswald font-bold uppercase tracking-wider rounded-lg animate-pulse-glow">
+                        Order Online Now
+                    </a>
+                    <a href="#about" class="btn-outline-modern px-8 py-4 text-white font-oswald font-bold uppercase tracking-wider rounded-lg relative z-10">
+                        Our Story
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+                <div class="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center pt-2">
+                    <div class="w-1.5 h-3 bg-white/70 rounded-full animate-pulse"></div>
+                </div>
+            </div>
         </section>
 
         <!-- ABOUT SECTION -->
