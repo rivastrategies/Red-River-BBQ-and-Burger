@@ -13,7 +13,6 @@ const Hero: React.FC = () => {
         alt="Delicious BBQ Spread" 
         className="w-full h-full object-cover"
       />
-      <div className="absolute inset-0 bg-black/10"></div>
     </div>
   );
 };

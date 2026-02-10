@@ -112,7 +112,7 @@ const Footer: React.FC = () => {
       {/* Scroll to Top */}
       <button 
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 bg-[#1a1a1a] text-white p-2 border border-gray-600 hover:bg-red-600 transition-colors"
+        className="fixed bottom-8 right-8 bg-[#333333] text-white p-2 border border-gray-600 hover:bg-red-600 transition-colors"
       >
         <ArrowUp className="w-5 h-5" />
       </button>
