@@ -1,4 +1,4 @@
-# SEO Schema.org JSON-LD Improvements - Red River BBQ & Grill
+# SEO Schema.org JSON-LD Improvements - Red River BBQ & Burger
 
 ## Overview
 Comprehensive JSON-LD schema markup has been implemented across all pages to maximize SEO visibility, improve search engine understanding, and enhance Rich Results in Google Search.

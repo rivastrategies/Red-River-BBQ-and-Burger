@@ -14,11 +14,11 @@ const Footer: React.FC = () => {
         {/* League City Column */}
         <div className="flex flex-col space-y-4">
           <div>
-            <h3 className="text-white font-bold text-sm uppercase">Red River BBQ & Grill</h3>
+            <h3 className="text-white font-bold text-sm uppercase">Red River BBQ & Burger</h3>
             <p className="text-sm font-bold text-gray-400">League City, Texas</p>
-            <p className="text-sm">Phone: 281.332.8086</p>
-            <p className="text-sm italic">1911 E. Main St.</p>
-            <p className="text-sm italic">League City, TX 77573</p>
+            <p className="text-sm">Phone: 281.578.3800</p>
+            <p className="text-sm italic">1711 S Mason Rd</p>
+            <p className="text-sm italic">Katy, TX 77450</p>
           </div>
           <div className="pt-4">
             <a href="#" className="flex items-center text-[10px] font-bold uppercase tracking-widest hover:text-white transition-colors">
@@ -31,8 +31,8 @@ const Footer: React.FC = () => {
         <div className="flex flex-col items-center space-y-4 text-center">
           <div>
             <h3 className="text-white font-bold text-sm uppercase">League City Hours:</h3>
-            <p className="text-sm"><span className="font-bold">Sun. – Thurs.:</span> 11am-9:00pm</p>
-            <p className="text-sm"><span className="font-bold">Fri. & Sat.:</span> 11am-9:30pm</p>
+            <p className="text-sm"><span className="font-bold">Sunday – Thursday |</span> 11:00 am – 9:00pm</p>
+            <p className="text-sm"><span className="font-bold">Friday & Saturday |</span> 11:00 am – 9:30pm</p>
           </div>
           <a href="#" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition-colors">
             <Facebook className="w-5 h-5 fill-current" />
@@ -51,9 +51,9 @@ const Footer: React.FC = () => {
         {/* Katy Hours */}
         <div className="flex flex-col items-center space-y-4 text-center">
           <div>
-            <h3 className="text-white font-bold text-sm uppercase">Katy Hours:</h3>
-            <p className="text-sm"><span className="font-bold">Sun. – Thurs.:</span> 11am-9:00pm</p>
-            <p className="text-sm"><span className="font-bold">Fri. & Sat.:</span> 11am-9:30pm</p>
+              <h3 className="text-white font-bold text-sm uppercase">Katy Hours:</h3>
+              <p className="text-sm"><span className="font-bold">Sunday – Thursday |</span> 11:00 am – 9:00pm</p>
+              <p className="text-sm"><span className="font-bold">Friday & Saturday |</span> 11:00 am – 9:30pm</p>
           </div>
           <a href="#" className="bg-blue-600 p-2 rounded-full text-white hover:bg-blue-700 transition-colors">
             <Facebook className="w-5 h-5 fill-current" />
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
         {/* Katy Location */}
         <div className="flex flex-col items-end text-right space-y-4">
           <div>
-            <h3 className="text-white font-bold text-sm uppercase">Red River BBQ & Grill</h3>
+            <h3 className="text-white font-bold text-sm uppercase">Red River BBQ & Burger</h3>
             <p className="text-sm font-bold text-gray-400">Katy, Texas</p>
             <p className="text-sm">Phone: 281.578.3800</p>
             <p className="text-sm italic">1711 S Mason Rd.</p>
