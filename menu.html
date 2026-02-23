@@ -331,6 +331,40 @@
                 gap: 1rem; 
             }
         }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 50;
+            min-width: 200px;
+        }
+        .dropdown-toggle:hover .dropdown-menu,
+        .dropdown-menu:hover {
+            display: block;
+        }
+        .dropdown-menu a {
+            display: block;
+            padding: 12px 16px;
+            color: #222;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 12px;
+            uppercase;
+            border-bottom: 1px solid #eee;
+            transition: background 0.3s;
+        }
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+            border-radius: 0 0 8px 8px;
+        }
+        .dropdown-menu a:hover {
+            background: #f0f0f0;
+            color: #cc0000;
+        }
     </style>
 </head>
 <body class="bg-gray-100 overflow-x-hidden min-h-screen flex flex-col">
@@ -386,7 +420,16 @@
                 <nav class="hidden md:flex flex-col items-end animate-fadeInDown delay-200" style="opacity: 0; animation-fill-mode: forwards;">
                     <ul class="flex gap-x-6 text-white font-oswald font-bold uppercase text-base tracking-wide">
                         <li><a href="index.html#location" class="nav-link hover:text-yellow-400 transition-all duration-300">LOCATION</a></li>
-                        <li><a href="menu.html" class="nav-link hover:text-yellow-400 transition-all duration-300 text-yellow-400">MENU</a></li>
+                        <li class="relative dropdown-toggle">
+                            <a href="menu.html" class="nav-link hover:text-yellow-400 transition-all duration-300 text-yellow-400 flex items-center gap-1">
+                                MENU 
+                                <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a href="menu.html">Dine-In Menu</a>
+                                <a href="to-go.html">To-Go Menu</a>
+                            </div>
+                        </li>
                         <li><a href="catering.html" class="nav-link hover:text-yellow-400 transition-all duration-300">CATERING</a></li>
                         <li><a href="party-room.html" class="nav-link hover:text-yellow-400 transition-all duration-300">PARTY ROOM</a></li>
                         <li><a href="./careers.html" class="nav-link hover:text-yellow-400 transition-all duration-300">CAREERS</a></li>
@@ -434,6 +477,16 @@
                         <i data-lucide="book-open" class="w-5 h-5 text-red-500"></i>
                         Menu
                     </a>
+                    <div class="ml-8 space-y-1">
+                        <a href="menu.html" class="flex items-center gap-2 px-4 py-2 text-black text-sm font-bold uppercase tracking-wide rounded-lg hover:bg-red-100 transition-all">
+                            <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                            Dine-In Menu
+                        </a>
+                        <a href="to-go.html" class="flex items-center gap-2 px-4 py-2 text-black text-sm font-bold uppercase tracking-wide rounded-lg hover:bg-red-100 transition-all">
+                            <i data-lucide="arrow-right" class="w-3 h-3"></i>
+                            To-Go Menu
+                        </a>
+                    </div>
                 </li>
                 <li>
                     <a href="catering.html" class="flex items-center gap-3 px-4 py-3 text-black font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-gray-100 transition-all">
@@ -536,164 +589,272 @@
         </section>
 
         <!-- MENU CONTENT -->
-        <section class="py-16 px-4 bg-white">
-            <div class="max-w-4xl mx-auto">
-                <section class="menu-category">
-                    <h2>BBQ Plates</h2>
-                    <p>All plates served with your choice of two sides and Texas toast</p>
-                    <div class="menu-item">
-                        <div><h3>Sliced Brisket</h3><p>Premium beef brisket smoked low and slow over Texas post oak</p></div>
-                        <span class="price-tag">$16.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Pulled Pork</h3><p>Tender pork shoulder pulled and served with our signature BBQ sauce</p></div>
-                        <span class="price-tag">$14.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>BBQ Ribs</h3><p>Fall-off-the-bone St. Louis style pork ribs with our house rub</p></div>
-                        <span class="price-tag">$17.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>1/2 BBQ Chicken</h3><p>Juicy half chicken smoked to perfection</p></div>
-                        <span class="price-tag">$12.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Smoked Turkey Breast</h3><p>Tender turkey breast with smoky flavor</p></div>
-                        <span class="price-tag">$13.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Two Meat Combo</h3><p>Choose any two meats from our selection</p></div>
-                        <span class="price-tag">$18.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Three Meat Combo</h3><p>Choose any three meats for the ultimate BBQ experience</p></div>
-                        <span class="price-tag">$22.99</span>
-                    </div>
-                </section>
+        <section class="py-12 px-4 bg-white" id="dine-in-menu">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- LEFT COLUMN -->
+                    <div class="space-y-8">
+                        <!-- Logo Section -->
+                        <div class="text-center mb-8">
+                            <img src="images/BBQ BURGER UPSCALE trans.png" alt="Red River BBQ & Burger" class="h-32 w-auto mx-auto mb-4">
+                        </div>
 
-                <div class="mt-8 bg-red-50 border-l-4 border-red-600 p-5 rounded-lg">
-                    <p class="text-xs uppercase tracking-widest text-red-700 font-bold mb-2">Customer review</p>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        "I ordered the peanut butter cut brisket with macaroni and cheese and potato salad. This meal was great; I couldn't finish it all, as the portion was large and the food was filling. The brisket was tender and tasted amazing when paired with the barbecue sauce. The sides acted as a nice complement."
-                    </blockquote>
-                    <p class="mt-3 text-sm text-gray-600">- George Vernau</p>
-                    <a href="reviews.html#brisket-reviews" class="mt-2 inline-block text-sm text-red-700 font-semibold hover:text-red-800">Read the full brisket review</a>
+                        <!-- APPETIZERS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Appetizers</h3>
+                            <div class="space-y-2 text-sm">
+                                <div>
+                                    <p class="font-bold">Texas Hushpuppies</p>
+                                    <p class="text-gray-600 text-xs">Brisket, bar-b-que sauce & pepper jack cheese, battered & fried 12.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Bar-B-Que</p>
+                                    <p class="text-gray-600 text-xs">Choice of bar-b-que meat. Pico de gallo & sour cream 13.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Brisket Cheese Fries</p>
+                                    <p class="text-gray-600 text-xs">Fries, brisket, queso, pico de gallo, jalapeños & sour cream 12.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Texas Queso</p>
+                                    <p class="text-gray-600 text-xs">Chile con queso, brisket, pico de gallo & fresh tortilla chips 12.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Bar-B Que Nachos</p>
+                                    <p class="text-gray-600 text-xs">Tortilla chips, queso, pico de gallo, beans, choice of bar-b-que meat, sour cream 13.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Fried Mushrooms 9.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Fried Pickles 9.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Loaded Bottle Caps 13.99</p>
+                                    <p class="text-gray-600 text-xs">8 jumbo chicken wings served with ranch or bleu cheese</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Wings 12.99</p>
+                                    <p class="text-gray-600 text-xs">Smoked Wings & BBQ Sauce, Original Buffalo or Garlic Parmesan</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SALADS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Salads</h3>
+                            <div class="space-y-2 text-sm">
+                                <p class="text-gray-600 text-xs italic mb-2">Dressings: Ranch, Bleu Cheese, Honey Mustard, Italian, Fat-Free Ranch or Italian</p>
+                                <div>
+                                    <p class="font-bold">Side Salad w/ Entrée 5.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Salad Bar (All You Can Eat) 10.99</p>
+                                    <p class="text-gray-600 text-xs">with Chicken Tenders +4</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">With Bar-B-Que Chicken +4</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">With Grilled Chicken +5</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">With Turkey Breast +5</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">With Chopped Brisket +6</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- POTATOES -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Potatoes</h3>
+                            <div class="space-y-2 text-sm">
+                                <div>
+                                    <p class="font-bold">Bar-B-Que Spud</p>
+                                    <p class="text-gray-600 text-xs">Turkey breast, smoked chicken, pulled pork, sausage or spicy sausage 12.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Brisket Spud 14.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Two Meat Combo Spud</p>
+                                    <p class="text-gray-600 text-xs">Brisket, turkey breast, smoked chicken, pulled pork, sausage or spicy sausage 15.79</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Baked Potato 7.99</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MIDDLE COLUMN -->
+                    <div class="space-y-8">
+                        <!-- Title -->
+                        <div class="text-center mb-6">
+                            <h1 class="text-4xl font-oswald font-bold text-blue-900 uppercase">Dine-In</h1>
+                            <h1 class="text-4xl font-oswald font-bold text-blue-900 uppercase">Menu</h1>
+                        </div>
+
+                        <!-- TEXAS BAR-B-QUE -->
+                        <div>
+                            <div class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">
+                                <p>Texas Bar-B-Que</p>
+                            </div>
+                            <p class="text-gray-600 text-xs italic mb-3">Includes your choice of 2 sides. Substitute 2 sides for a baked potato for 1.99</p>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="font-bold">Pulled Pork</span> <span class="float-right">17.99</span></p>
+                                <p><span class="font-bold">Brisket</span> <span class="float-right">18.99</span></p>
+                                <p><span class="font-bold">Pork Ribs (St L)</span> <span class="float-right">18.99</span></p>
+                                <p><span class="font-bold">Turkey Breast</span> <span class="float-right">17.99</span></p>
+                                <p><span class="font-bold">Sausage</span> <span class="float-right">16.99</span></p>
+                                <p><span class="font-bold">Jalapeño Cheese Sausage</span> <span class="float-right">17.25</span></p>
+                                <p><span class="font-bold">X Chicken</span> <span class="float-right">17.99</span></p>
+                                <p><span class="font-bold">Two Meat Combo</span> <span class="float-right">18.99</span></p>
+                                <p><span class="font-bold">Three Meat Combo</span> <span class="float-right">20.99</span></p>
+                            </div>
+                        </div>
+
+                        <!-- BAR-B-QUE SANDWICHES -->
+                        <div>
+                            <div class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">
+                                <p>Bar-B-Que</p>
+                                <p>Sandwiches</p>
+                            </div>
+                            <p class="text-gray-600 text-xs italic mb-3">Includes french fries. Sub homemade onion rings +$99</p>
+                            <div class="space-y-2 text-sm">
+                                <div>
+                                    <p><span class="font-bold">Bar-B-Que Sandwich</span> <span class="float-right">13.99</span></p>
+                                    <p class="text-gray-600 text-xs">Your choice of slow smoked BBQ meat</p>
+                                </div>
+                                <div>
+                                    <p><span class="font-bold">Brisket Sandwich</span> <span class="float-right">14.99</span></p>
+                                </div>
+                                <div>
+                                    <p><span class="font-bold">Turkey Swiss</span> <span class="float-right">13.99</span></p>
+                                    <p class="text-gray-600 text-xs">Smoked turkey breast, jalapeño cheese bun, Swiss cheese & bacon</p>
+                                </div>
+                                <div>
+                                    <p><span class="font-bold">Brisket Melt</span> <span class="float-right">15.99</span></p>
+                                    <p class="text-gray-600 text-xs">Moist cut brisket, cheddar cheese & grilled onions, jalapeño cheese bun</p>
+                                </div>
+                                <div>
+                                    <p><span class="font-bold">Triple Threat</span> <span class="float-right">15.99</span></p>
+                                    <p class="text-gray-600 text-xs">Pulled pork, spicy sausage, peppered bacon, cheddar cheese, jal cheese bun</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BURGERS & SANDWICHES -->
+                        <div>
+                            <div class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">
+                                <p>Burgers</p>
+                                <p>& Sandwiches</p>
+                            </div>
+                            <p class="text-gray-600 text-xs italic mb-3">Double meat, 1/2 lb smash burgers with hand-cut french fries. Sub onion rings +$99. Lettuce, tomato, onion, pickles, mayo & mustard</p>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="font-bold">Angus Burger</span> <span class="float-right">13.99</span></p>
+                                <p><span class="font-bold">Bacon Cheeseburger</span> <span class="float-right">15.99</span></p>
+                                <p><span class="font-bold">Durango Burger</span> <span class="float-right">14.99</span></p>
+                                <p><span class="font-bold">Smokehouse Burger</span> <span class="float-right">15.99</span></p>
+                                <p><span class="font-bold">Grilled Chicken Burger</span> <span class="float-right">13.99</span></p>
+                                <p><span class="font-bold">Santa Fe Chicken Sandwich</span> <span class="float-right">14.99</span></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN -->
+                    <div class="space-y-8">
+                        <!-- COUNTRY PLATTERS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Country Platters</h3>
+                            <p class="text-gray-600 text-xs italic mb-3">Includes your choice of 2 sides</p>
+                            <div class="space-y-2 text-sm">
+                                <div>
+                                    <p class="font-bold">Chicken Fried Steak</p>
+                                    <p class="text-gray-600 text-xs">Hand battered cutlet golden fried & served with homemade cream gravy. Includes Salad Bar 20.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Chicken Tenders</p>
+                                    <p class="text-gray-600 text-xs">Hand battered tenders & cream gravy 15.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Grilled Chicken Dinner</p>
+                                    <p class="text-gray-600 text-xs">Marinated chicken breast, grilled & topped with sautéed onions and mushrooms. Includes Salad Bar 17.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Pepper Jack Chicken Dinner</p>
+                                    <p class="text-gray-600 text-xs">Grilled chicken breast topped with pepper jack cheese, sautéed onions, mushrooms & jalapeños. Includes Salad Bar 18.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Jumbo Gulf Fried Shrimp</p>
+                                    <p class="text-gray-600 text-xs">Texas-Gulf shrimp, hand battered & fried golden brown (8pc) 17.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">1855 Black Angus Ribeye</p>
+                                    <p class="text-gray-600 text-xs">Grilled, Includes Salad Bar 26.99</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold">Mississippi Fried Catfish</p>
+                                    <p class="text-gray-600 text-xs">Two fresh fillets, fried golden brown 19.99</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- KID'S MENU -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Kid's Menu</h3>
+                            <p class="text-gray-600 text-xs italic mb-3">Served with a KID's size drink. 12 yrs under.</p>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="font-bold">One Meat Plate</span> with 2 sides <span class="float-right">8.99</span></p>
+                                <p><span class="font-bold">Bar-B-Que Sandwich</span> with Brisket +2 <span class="float-right">7.99</span></p>
+                                <p><span class="font-bold">Chicken Nuggets</span> with FF +7.99</p>
+                                <p><span class="font-bold">Hamburger</span> with FF +7.99</p>
+                                <p><span class="font-bold">Grilled Cheese</span> with FF +7.99</p>
+                                <p><span class="font-bold">Mac & Cheese</span> with FF +7.99</p>
+                            </div>
+                        </div>
+
+                        <!-- DESSERTS & SHAKES -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Desserts & Shakes</h3>
+                            <div class="space-y-1 text-sm">
+                                <p><span class="font-bold">Peach Cobbler</span> & ice cream <span class="float-right">5.99</span></p>
+                                <p><span class="font-bold">Cherry Cobbler</span> & ice cream <span class="float-right">5.99</span></p>
+                                <p><span class="font-bold">Pecan Cobbler</span> & ice cream <span class="float-right">6.99</span></p>
+                                <p><span class="font-bold">Banana Pudding</span> <span class="float-right">5.99</span></p>
+                                <p><span class="font-bold">Homemade Brownie</span> <span class="float-right">2.75</span></p>
+                                <p><span class="font-bold">Cookie Brownie Bar</span> <span class="float-right">3.99</span></p>
+                                <p><span class="font-bold">Chocolate Chip Cookie</span> <span class="float-right">1.75</span></p>
+                                <p><span class="font-bold">Classic Milkshakes</span> <span class="float-right">4.99</span></p>
+                                <p class="text-gray-600 text-xs">Cookies & Cream, Vanilla, Chocolate & Strawberry</p>
+                            </div>
+                        </div>
+
+                        <!-- LUNCH SPECIALS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Lunch Specials</h3>
+                            <div class="space-y-1 text-xs">
+                                <p>#1 1/2 lb Angus burger with fries 12.99</p>
+                                <p>#2 Chopped Brisket Sandwich with fries 12.99</p>
+                                <p>#3 Chicken Tenders (4pc) with fries 12.99</p>
+                                <p>#4 Fried Shrimp (8pc) with fries & slaw 14.99</p>
+                                <p>#5 Chicken Tenders (6pc) with fries 12.99</p>
+                                <p>#6 Sausage & Chicken w/two sides 15.99</p>
+                                <p>#7 Chopped Brisket Spud 12.99</p>
+                                <p>#8 Salad Bar with smoked turkey breast 11.99</p>
+                                <p class="pt-2 text-gray-500">RIRAB 10.2025</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-                <section class="menu-category">
-                    <h2>BBQ Sandwiches</h2>
-                    <p>Served on a toasted bun with pickles and onions</p>
-                    <div class="menu-item">
-                        <div><h3>Chopped Brisket Sandwich</h3><p>Chopped beef brisket on a toasted bun</p></div>
-                        <span class="price-tag">$10.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Pulled Pork Sandwich</h3><p>Tender pulled pork with coleslaw</p></div>
-                        <span class="price-tag">$9.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>BBQ Sausage Sandwich</h3><p>Smoked sausage link on a toasted bun</p></div>
-                        <span class="price-tag">$8.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Tri-Tip Sandwich</h3><p>Sliced tri-tip beef on a toasted bun</p></div>
-                        <span class="price-tag">$11.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Turkey Sandwich</h3><p>Smoked turkey breast on a toasted bun</p></div>
-                        <span class="price-tag">$9.99</span>
-                    </div>
-                </section>
-
-                <section class="menu-category">
-                    <h2>Homestyle Sides</h2>
-                    <div class="sides-grid">
-                        <div class="side-item"><h3>Mac & Cheese</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>Coleslaw</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>BBQ Beans</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>Potato Salad</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>French Fries</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>Onion Rings</h3><span style="color: #cc0000; font-weight: bold;">$4.99</span></div>
-                        <div class="side-item"><h3>Green Beans</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>Corn on the Cob</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>Cornbread</h3><span style="color: #cc0000; font-weight: bold;">$2.99</span></div>
-                        <div class="side-item"><h3>Mashed Potatoes</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>Baked Beans</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                        <div class="side-item"><h3>Collard Greens</h3><span style="color: #cc0000; font-weight: bold;">$3.99</span></div>
-                    </div>
-                </section>
-
-                <section class="menu-category">
-                    <h2>Appetizers & Specials</h2>
-                    <div class="menu-item">
-                        <div><h3>Smoked Brisket Nachos</h3><p>Crispy tortilla chips topped with brisket, cheese, jalapeños, and sour cream</p></div>
-                        <span class="price-tag">$11.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>BBQ Ribs Starter</h3><p>Half pound of our signature smoked ribs</p></div>
-                        <span class="price-tag">$12.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Smoked Turkey Legs</h3><p>Authentic smoked turkey leg with side of BBQ sauce</p></div>
-                        <span class="price-tag">$9.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>BBQ Sampler Platter</h3><p>A taste of our best - brisket, ribs, and pulled pork with two sides</p></div>
-                        <span class="price-tag">$24.99</span>
-                    </div>
-                </section>
-
-                <div class="mt-8 bg-red-50 border-l-4 border-red-600 p-5 rounded-lg">
-                    <p class="text-xs uppercase tracking-widest text-red-700 font-bold mb-2">Customer review</p>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        "I haven't been here in over 20 years, but now I have a reason to visit more often; All you can eat pork ribs for $16.99 plus two sides. They tasted like candy, and very tender. All I can say is OMG I will see them next Tuesday as well."
-                    </blockquote>
-                    <p class="mt-3 text-sm text-gray-600">- Reeljoy</p>
-                    <a href="reviews.html#ribs-reviews" class="mt-2 inline-block text-sm text-red-700 font-semibold hover:text-red-800">Read the full ribs review</a>
-                </div>
-
-                <section class="menu-category">
-                    <h2>Beverages</h2>
-                    <div class="sides-grid">
-                        <div class="side-item"><h3>Soft Drinks</h3><span style="color: #cc0000; font-weight: bold;">$2.49</span></div>
-                        <div class="side-item"><h3>Iced Tea</h3><span style="color: #cc0000; font-weight: bold;">$2.49</span></div>
-                        <div class="side-item"><h3>Bottled Water</h3><span style="color: #cc0000; font-weight: bold;">$1.99</span></div>
-                        <div class="side-item"><h3>Coffee</h3><span style="color: #cc0000; font-weight: bold;">$2.29</span></div>
-                    </div>
-                </section>
-
-                <section class="menu-category">
-                    <h2>Desserts</h2>
-                    <div class="menu-item">
-                        <div><h3>Peach Cobbler</h3><p>Warm, homemade peach cobbler with vanilla ice cream</p></div>
-                        <span class="price-tag">$4.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Brownies</h3><p>Fresh baked chocolate brownies</p></div>
-                        <span class="price-tag">$3.99</span>
-                    </div>
-                    <div class="menu-item">
-                        <div><h3>Banana Pudding</h3><p>Traditional creamy banana pudding</p></div>
-                        <span class="price-tag">$4.49</span>
-                    </div>
-                </section>
-
-                <!-- CTA Section -->
-                <section class="bg-gradient-to-r from-[#cc0000] to-[#880000] rounded-2xl p-8 md:p-12 text-center text-white mt-12">
-                    <h2 class="text-3xl md:text-4xl font-oswald font-bold mb-4 uppercase">Ready to Order?</h2>
-                    <p class="text-lg md:text-xl mb-8">Get your BBQ fix delivered or pick it up!</p>
-                    <div class="flex flex-col md:flex-row gap-4 justify-center">
-                        <a href="https://order.redriverrestaurants.com/order/red-river-bbq-league-city-1911-e-main-st-suite-b" target="_blank" rel="nofollow noopener noreferrer" class="btn-modern inline-block px-8 py-4 text-white font-oswald font-bold uppercase rounded-lg text-lg animate-pulse-glow">
-                            Pick-Up Order
-                        </a>
-                        <a href="https://order.online/store/red-river-bbq-grill-league-city-72318?hideModal=true&pickup=true" target="_blank" rel="nofollow noopener noreferrer" class="btn-outline-modern inline-block px-8 py-4 text-white font-oswald font-bold uppercase rounded-lg text-lg relative z-10">
-                            Delivery Order
-                        </a>
-                    </div>
-                </section>
             </div>
         </section>
-    </main>
+
+
 
     <!-- FOOTER SECTION -->
     <footer class="diagonal-stripes py-20 px-4 text-gray-300 relative overflow-hidden">
