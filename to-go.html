@@ -227,19 +227,23 @@
         }
 
         .dropdown-menu {
-            display: none;
+            visibility: hidden;
+            opacity: 0;
             position: absolute;
-            top: 100%;
+            top: calc(100% + 8px);
             left: 0;
             background: white;
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            z-index: 50;
-            min-width: 200px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+            z-index: 9999;
+            min-width: 180px;
+            transition: opacity 0.15s ease, visibility 0.15s ease, transform 0.15s ease;
+            transform: translateY(-4px);
         }
-        .dropdown-toggle:hover .dropdown-menu,
-        .dropdown-menu:hover {
-            display: block;
+        .dropdown-menu.open {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
         }
         .dropdown-menu a {
             display: block;
@@ -248,17 +252,23 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 12px;
-            uppercase;
+            text-transform: uppercase;
             border-bottom: 1px solid #eee;
-            transition: background 0.3s;
+            transition: background 0.2s;
+        }
+        .dropdown-menu a:first-child {
+            border-radius: 8px 8px 0 0;
         }
         .dropdown-menu a:last-child {
             border-bottom: none;
             border-radius: 0 0 8px 8px;
         }
         .dropdown-menu a:hover {
-            background: #f0f0f0;
+            background: #f5f5f5;
             color: #cc0000;
+        }
+        .dropdown-trigger {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -285,7 +295,7 @@
         </div>
 
         <!-- Main Branding Bar -->
-        <div class="chalkboard-texture py-3 md:py-6 px-4 shadow-2xl relative overflow-hidden">
+        <div class="chalkboard-texture py-3 md:py-6 px-4 shadow-2xl relative">
             <div class="absolute inset-0 bg-gradient-to-r from-transparent via-red-900/10 to-transparent opacity-50"></div>
             
             <div class="max-w-7xl mx-auto flex justify-between items-center relative z-10">
@@ -295,64 +305,138 @@
                         <img 
                             src="images/BBQ BURGER UPSCALE trans.png" 
                             alt="Red River BBQ & Burger" 
-                            class="h-12 md:h-16 w-auto transition-transform duration-500 group-hover:scale-110"
+                            class="h-14 md:h-28 w-auto transition-transform duration-300 group-hover:scale-105 drop-shadow-lg"
                         />
                     </a>
                 </div>
 
-                <!-- Desktop Navigation -->
-                <nav class="hidden lg:flex items-center space-x-8">
-                    <a href="index.html" class="nav-link text-white text-xs md:text-sm font-bold uppercase tracking-widest hover:text-yellow-300">Home</a>
-                    <a href="locations.html" class="nav-link text-white text-xs md:text-sm font-bold uppercase tracking-widest hover:text-yellow-300">Locations</a>
-                    <div class="relative group dropdown-toggle">
-                        <button class="nav-link text-white text-xs md:text-sm font-bold uppercase tracking-widest hover:text-yellow-300">
-                            Menu
-                        </button>
-                        <div class="dropdown-menu">
-                            <a href="menu.html">Dine-In Menu</a>
-                            <a href="to-go.html">To-Go Menu</a>
-                        </div>
-                    </div>
-                    <a href="catering.html" class="nav-link text-white text-xs md:text-sm font-bold uppercase tracking-widest hover:text-yellow-300">Catering</a>
-                    <a href="reviews.html" class="nav-link text-white text-xs md:text-sm font-bold uppercase tracking-widest hover:text-yellow-300">Reviews</a>
-                </nav>
-
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-btn" class="flex lg:hidden flex-col gap-1.5 justify-end">
-                    <div class="hamburger-line h-0.5 w-6 bg-white transition-all duration-300"></div>
-                    <div class="hamburger-line h-0.5 w-6 bg-white transition-all duration-300"></div>
-                    <div class="hamburger-line h-0.5 w-6 bg-white transition-all duration-300"></div>
+                <button 
+                    id="mobile-menu-btn"
+                    class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-lg bg-white/10 hover:bg-white/20 transition-all"
+                    aria-label="Toggle menu"
+                >
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded my-1.5 transition-all duration-300"></span>
+                    <span class="hamburger-line w-6 h-0.5 bg-white rounded transition-all duration-300"></span>
                 </button>
+
+                <!-- Desktop Navigation Section -->
+                <nav class="hidden md:flex flex-col items-end animate-fadeInDown delay-200" style="opacity: 0; animation-fill-mode: forwards;">
+                    <ul class="flex gap-x-6 text-white font-oswald font-bold uppercase text-base tracking-wide">
+                        <li><a href="index.html#location" class="nav-link hover:text-yellow-400 transition-all duration-300">LOCATION</a></li>
+                        <li><a href="menu.html" class="nav-link hover:text-yellow-400 transition-all duration-300">DINE-IN MENU</a></li>
+                        <li><a href="to-go.html" class="nav-link hover:text-yellow-400 transition-all duration-300 text-yellow-400">TO-GO MENU</a></li>
+                        <li><a href="catering.html" class="nav-link hover:text-yellow-400 transition-all duration-300">CATERING</a></li>
+                        <li><a href="./careers.html" class="nav-link hover:text-yellow-400 transition-all duration-300">CAREERS</a></li>
+                        <li><a href="community.html" class="nav-link hover:text-yellow-400 transition-all duration-300">COMMUNITY</a></li>
+                        <li><a href="reviews.html" class="nav-link hover:text-yellow-400 transition-all duration-300">REVIEWS</a></li>
+                    </ul>
+                    <div class="mt-2 flex space-x-4 text-[11px] font-bold">
+                        <a href="https://apps.apple.com/us/app/red-river-restaurants/id6744835848" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 hover:gap-2">
+                            <i data-lucide="smartphone" class="w-3 h-3"></i> iPhone App
+                        </a>
+                        <a href="https://play.google.com/store/apps/details?id=com.toasttab.redriverrestaurants&hl=en-us&pli=1" target="_blank" rel="noopener noreferrer" class="text-red-400 hover:text-red-300 transition-colors flex items-center gap-1 hover:gap-2">
+                            <i data-lucide="smartphone" class="w-3 h-3"></i> Android App
+                        </a>
+                    </div>
+                </nav>
             </div>
+        </div>
+    </header>
 
-            <!-- Mobile Navigation Menu -->
-            <nav id="mobile-menu" class="fixed left-0 top-0 h-screen w-full bg-black/95 flex flex-col justify-start pt-20 px-4 gap-4 transform -translate-x-full transition-transform duration-300 lg:hidden">
-                <button id="mobile-menu-close" class="absolute top-4 right-4 text-white">
-                    <i data-lucide="x" class="w-8 h-8"></i>
-                </button>
-                <a href="index.html" class="text-white font-bold text-lg uppercase py-2 border-b border-gray-600 hover:text-red-500 transition">Home</a>
-                <a href="locations.html" class="text-white font-bold text-lg uppercase py-2 border-b border-gray-600 hover:text-red-500 transition">Locations</a>
-                <a href="menu.html" class="text-white font-bold text-lg uppercase py-2 border-b border-gray-600 hover:text-red-500 transition">Dine-In Menu</a>
-                <a href="to-go.html" class="text-white font-bold text-lg uppercase py-2 border-b border-gray-600 hover:text-red-500 transition">To-Go Menu</a>
-                <a href="catering.html" class="text-white font-bold text-lg uppercase py-2 border-b border-gray-600 hover:text-red-500 transition">Catering</a>
-                <a href="reviews.html" class="text-white font-bold text-lg uppercase py-2 border-b border-gray-600 hover:text-red-500 transition">Reviews</a>
-            </nav>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[60] opacity-0 pointer-events-none transition-opacity duration-300"></div>
 
-            <!-- Mobile Menu Overlay -->
-            <div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="fixed top-0 right-0 h-full w-[280px] bg-white z-[70] transform translate-x-full transition-transform duration-300 ease-out shadow-2xl">
+        <!-- Menu Header -->
+        <div class="flex items-center justify-between p-4 border-b border-gray-200">
+            <span class="text-black font-oswald font-bold text-lg uppercase">Menu</span>
+            <button id="mobile-menu-close" class="w-10 h-10 flex items-center justify-center rounded-lg bg-gray-200 hover:bg-red-600 hover:text-white transition-colors">
+                <i data-lucide="x" class="w-6 h-6 text-black"></i>
+            </button>
+        </div>
 
-            <!-- Mobile Utility Links -->
-            <div class="flex lg:hidden gap-2 mt-3">
-                <a href="https://order.toasttab.com/egiftcards/red-river-bbq-league-city-1911-e-main-st-suite-b" target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-1 px-2 py-2 text-white text-[10px] font-bold uppercase rounded-lg bg-red-700 hover:bg-red-600 transition-all">
-                    <i data-lucide="gift" class="w-3 h-3"></i> Gift Cards
-                </a>
-                <button onclick="openOrderModal()" class="flex-1 flex items-center justify-center gap-1 px-2 py-2 text-white text-[10px] font-bold uppercase rounded-lg bg-red-700 hover:bg-red-600 transition-all border-none cursor-pointer">
-                    <i data-lucide="shopping-cart" class="w-3 h-3"></i> Order
-                </button>
-                <a href="https://www.toasttab.com/red-river-bbq-league-city-1911-e-main-st-suite-b/rewardsSignup" target="_blank" rel="noopener noreferrer" class="flex-1 flex items-center justify-center gap-1 px-2 py-2 text-white text-[10px] font-bold uppercase rounded-lg bg-red-700 hover:bg-red-600 transition-all">
-                    <i data-lucide="trophy" class="w-3 h-3"></i> Rewards
-                </a>
-            </div>
+        <!-- Menu Content -->
+        <nav class="p-4">
+            <!-- Main Navigation -->
+            <ul class="space-y-1">
+                <li>
+                    <a href="index.html#location" class="flex items-center gap-3 px-4 py-3 text-black font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="map-pin" class="w-5 h-5 text-red-500"></i>
+                        Location
+                    </a>
+                </li>
+                <li>
+                    <a href="menu.html" class="flex items-center gap-3 px-4 py-3 text-black font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="book-open" class="w-5 h-5 text-red-500"></i>
+                        Dine-In Menu
+                    </a>
+                </li>
+                <li>
+                    <a href="to-go.html" class="flex items-center gap-3 px-4 py-3 text-black font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-gray-100 transition-all bg-gray-100">
+                        <i data-lucide="book-open" class="w-5 h-5 text-red-500"></i>
+                        To-Go Menu
+                    </a>
+                </li>
+                <li>
+                    <a href="catering.html" class="flex items-center gap-3 px-4 py-3 text-black font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="utensils" class="w-5 h-5 text-red-500"></i>
+                        Catering
+                    </a>
+                </li>
+
+                <li>
+                    <a href="./careers.html" class="flex items-center gap-3 px-4 py-3 text-black font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="briefcase" class="w-5 h-5 text-red-500"></i>
+                        Careers
+                    </a>
+                </li>
+                <li>
+                    <a href="community.html" class="flex items-center gap-3 px-4 py-3 text-black font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="heart" class="w-5 h-5 text-red-500"></i>
+                        Community
+                    </a>
+                </li>
+                <li>
+                    <a href="reviews.html" class="flex items-center gap-3 px-4 py-3 text-black font-oswald font-bold uppercase tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="star" class="w-5 h-5 text-red-500"></i>
+                        Reviews
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Divider -->
+            <div class="my-4 border-t border-gray-300"></div>
+
+            <!-- Quick Actions -->
+            <ul class="space-y-1">
+                <li>
+                    <button onclick="openOrderModal(); closeMobileMenu();" class="w-full text-left flex items-center gap-3 px-4 py-3 text-white font-bold uppercase text-sm tracking-wide rounded-lg bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 transition-all">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i>
+                        Order Online
+                    </button>
+                </li>
+                <li>
+                    <a href="https://order.toasttab.com/egiftcards/red-river-bbq-league-city-1911-e-main-st-suite-b" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 text-black font-bold uppercase text-sm tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="gift" class="w-5 h-5 text-yellow-500"></i>
+                        Gift Cards
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.toasttab.com/red-river-bbq-league-city-1911-e-main-st-suite-b/marketing-signup" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 text-black font-bold uppercase text-sm tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="mail" class="w-5 h-5 text-yellow-500"></i>
+                        E-Club
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.toasttab.com/red-river-bbq-league-city-1911-e-main-st-suite-b/rewardsSignup" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 text-black font-bold uppercase text-sm tracking-wide rounded-lg hover:bg-gray-100 transition-all">
+                        <i data-lucide="trophy" class="w-5 h-5 text-yellow-500"></i>
+                        Rewards
+                    </a>
+                </li>
+            </ul>
 
             <!-- Divider -->
             <div class="my-4 border-t border-gray-300"></div>
@@ -707,7 +791,19 @@
     <script>
         lucide.createIcons();
 
-        // ===== Order Modal Functions =====
+        // ===== Dropdown Menu =====
+        (function() {
+            const toggle = document.getElementById('menu-dropdown-toggle');
+            const dropdown = document.getElementById('menu-dropdown');
+            if (!toggle || !dropdown) return;
+            let closeTimer;
+            const openDropdown = () => { clearTimeout(closeTimer); dropdown.classList.add('open'); };
+            const closeDropdown = () => { closeTimer = setTimeout(() => dropdown.classList.remove('open'), 120); };
+            toggle.addEventListener('mouseenter', openDropdown);
+            toggle.addEventListener('mouseleave', closeDropdown);
+            dropdown.addEventListener('mouseenter', openDropdown);
+            dropdown.addEventListener('mouseleave', closeDropdown);
+        })();
         function openOrderModal() {
             document.getElementById('orderModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
