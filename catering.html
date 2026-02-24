@@ -150,6 +150,11 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(204, 0, 0, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(204, 0, 0, 0.8), 0 0 60px rgba(204, 0, 0, 0.4); }
+        }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
         .btn-modern {
             position: relative;
             overflow: hidden;
@@ -529,269 +534,198 @@
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
         <!-- Hero Section -->
-        <section class="relative w-full h-[500px] overflow-hidden">
-            <img src="images/DRIVETHROUGH-OPEN.jpg" alt="Red River BBQ & Burger Catering" class="w-full h-full object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
-                <h1 class="text-white text-4xl md:text-6xl font-oswald font-black uppercase tracking-widest mb-4">
-                    CATERING
-                </h1>
-                <p class="text-white/90 text-lg md:text-xl mb-8 max-w-2xl">
-                    Full-Service Catering & Event Services - Making Your Events Memorable Since 2002
-                </p>
-                <button onclick="document.getElementById('booking-form').scrollIntoView({behavior: 'smooth'})" class="btn-modern px-10 py-4 text-white font-oswald font-bold uppercase tracking-wider rounded-lg text-lg">
-                    <i data-lucide="calendar" class="w-5 h-5 inline mr-2"></i> BOOK CATERING
-                </button>
-            </div>
+        <section class="relative w-full h-[300px] md:h-[620px] overflow-hidden">
+            <img src="images/DRIVETHROUGH-OPEN.jpg" alt="Red River BBQ & Burger Catering" class="w-full h-full object-cover object-left" />
         </section>
 
         <!-- Catering Menu Content -->
-        <section class="py-16 px-4 bg-gray-100">
-            <div class="max-w-5xl mx-auto">
-                
-                <!-- Specialty Menu Items -->
-                <div class="menu-section">
-                    <h2>Specialty Menu Items</h2>
-                    
-                    <div class="menu-item">
-                        <h4>Lone Star Burgers or Grilled Chicken Sandwiches</h4>
-                        <p>⅓ Lb Angus beef patties or chicken breasts, flame-grilled. Served baked beans & an assortment of chips. Includes fresh lettuce, tomatoes & cheese</p>
-                        <p class="price mt-2">Pick-Up or Delivery: $16.95 | Full-Service Catering: $21.95</p>
-                        <p class="text-xs text-gray-500 italic">*Price valid for parties of 100 or more Full-Service</p>
-                        <p class="text-xs text-gray-500 italic">*500 Guests or more please inquire</p>
+        <section class="py-12 px-4 bg-gray-50" id="catering-menu">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+
+                    <!-- LEFT COLUMN -->
+                    <div class="space-y-8">
+                        <!-- Logo/Title -->
+                        <div class="text-center mb-4">
+                            <img src="images/BBQ BURGER UPSCALE trans.png" alt="Red River BBQ & Burger" class="h-32 w-auto mx-auto mb-4">
+                            <h2 class="text-3xl font-oswald font-bold text-gray-800 uppercase tracking-wide">Catering</h2>
+                            <h2 class="text-3xl font-oswald font-bold text-gray-800 uppercase tracking-wide">Menu</h2>
+                        </div>
+
+                        <!-- SPECIALTY MENU ITEMS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Specialty Items</h3>
+                            <div class="space-y-4 text-xs">
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Lone Star Burgers or Grilled Chicken Sandwiches</p>
+                                    <p class="text-gray-600">⅓ Lb Angus beef patties or chicken breasts, flame-grilled. Served baked beans & assortment of chips. Includes fresh lettuce, tomatoes & cheese</p>
+                                    <p class="text-red-600 font-bold mt-1">Pick-Up or Delivery: $16.95 | Full-Service: $21.95</p>
+                                    <p class="text-gray-500 italic">*Price valid for parties of 100 or more Full-Service. *500 Guests or more please inquire.</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Mesquite Grilled Ribeye</p>
+                                    <p class="text-gray-600">12oz-18oz Black Angus USDA Choice Ribeye, hand-cut & seasoned. Comes with garlic mashed potatoes & beans or freshly baked yeast rolls</p>
+                                    <p class="text-red-600 font-bold mt-1">Pick-Up or Delivery: $25.95 | Full-Service: $30.95</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Baked Potato Bar</p>
+                                    <p class="text-gray-600">Texas sized baked potatoes with butter, grated cheddar, sour cream & your choice of one chopped bar-b-que meat.</p>
+                                    <p class="text-red-600 font-bold mt-1">Pick-Up or Delivery: $14.95 | Full-Service: $18.95</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Holiday Dinner</p>
+                                    <p class="text-gray-600">Oven roasted turkey breast & ham. Choice of garlic mashed potatoes or whipped yams, cornbread dressing, southern turkey gravy, cranberry sauce & freshly baked yeast rolls</p>
+                                    <p class="text-red-600 font-bold mt-1">Pick-Up or Delivery: $18.95 | Full-Service: $22.95</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- INDIVIDUALLY BOXED MEALS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Boxed Bar-B-Que Meals</h3>
+                            <div class="space-y-3 text-xs">
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Boxed Lunch</p>
+                                    <p class="text-gray-600">Bar-B-Que Sandwich (choice of meat), Chips & a Chocolate Chip Cookie. Includes fixings & napkins.</p>
+                                    <p class="text-red-600 font-bold mt-1">Pick-Up or Delivery: $14.95</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Two Meat Combo</p>
+                                    <p class="text-gray-600">Your choice of 2 meats & 2 sides. Includes pickles, onions, bar-b-que sauce, bread & plasticware.</p>
+                                    <p class="text-red-600 font-bold mt-1">Pick-Up or Delivery: $19.75</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Three Meat Combo</p>
+                                    <p class="text-gray-600">Your choice of 3 meats & 2 sides. Includes pickles, onions, bar-b-que sauce, bread & plasticware.</p>
+                                    <p class="text-red-600 font-bold mt-1">Pick-Up or Delivery: $21.75</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="menu-item">
-                        <h4>Mesquite Grilled Ribeye</h4>
-                        <p>12oz-18oz Black Angus USDA Choice Ribeye, hand-cut & seasoned with our special blend of spices. Comes with garlic mashed potatoes & beans or freshly baked yeast rolls</p>
-                        <p class="price mt-2">Pick-Up or Delivery: $25.95 | Full-Service Catering: $30.95</p>
-                        <p class="text-xs text-gray-500 italic">*Price valid for parties of 100 or more Full-Service</p>
-                        <p class="text-xs text-gray-500 italic">*500 Guests or more please inquire</p>
+                    <!-- MIDDLE COLUMN -->
+                    <div class="space-y-8">
+                        <!-- ACTION STATIONS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Action Stations & Hors d'oeuvres</h3>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-400 p-3 mb-4 text-xs">
+                                <p class="font-semibold mb-1">Ideal for events when mingling is important. Select five or more items.</p>
+                                <p class="font-semibold">Includes staff, chafing dishes, serving platters & upgraded plates & silverware. Two Hour Serve Time. Contact our catering consultants for pricing.</p>
+                            </div>
+                            <div class="space-y-1 text-xs">
+                                <p><span class="text-red-600 font-bold">◆</span> Cocktail Fajitas</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Chicken & Beef Quesadillas</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Chile con Queso, Red Salsa, Green Sauce & Chips</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Shrimp Brochette</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Chicken Diablo</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Shrimp Campechana</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Pork Tenderloin</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Baby Back Ribs</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Texas Hushpuppies</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Shrimp Poppers</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Boneless Chicken Bites</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Mini Bar-B-Que Meatballs</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Cheese & Crackers</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Assortment of Fruit & Veggies</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Brisket & Turkey Sliders</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Mashed Potato Bar</p>
+                                <p><span class="text-red-600 font-bold">◆</span> Brisket Mac & Cheese Bar</p>
+                            </div>
+                        </div>
+
+                        <!-- APPETIZER TRAYS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Appetizer Trays</h3>
+                            <div class="space-y-3 text-xs">
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Veggie Tray</p>
+                                    <p class="text-gray-600">Cauliflowerets, Baby Carrots, Broccoli, Cucumbers, Cherry Tomatoes & Creamy Ranch Dip (serves ~25 guests)</p>
+                                    <p class="text-red-600 font-bold mt-1">$75</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Cheese Cubes & Cracker Tray</p>
+                                    <p class="text-gray-600">Cheddar, Swiss & Pepper Jack Cubes with an assortment of crackers (serves ~35 guests)</p>
+                                    <p class="text-red-600 font-bold mt-1">$75</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Fresh Fruit Tray</p>
+                                    <p class="text-gray-600">Red & Green Grapes, Strawberries & Pineapple (serves ~25 guests)</p>
+                                    <p class="text-red-600 font-bold mt-1">$75</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Texas Hushpuppies</p>
+                                    <p class="text-gray-600">Chopped Brisket, Bar-B-Que Sauce & Pepper Jack Cheese battered & deep fried. Ranch for dipping. (35 pcs)</p>
+                                    <p class="text-red-600 font-bold mt-1">$115</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Jalapeño Shrimp Poppers</p>
+                                    <p class="text-gray-600">Pickled jalapeños stuffed with jumbo Gulf shrimp & pepper jack cheese, battered & fried. Ranch for dipping. (30 pcs)</p>
+                                    <p class="text-red-600 font-bold mt-1">$125</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="menu-item">
-                        <h4>Baked Potato Bar</h4>
-                        <p>Texas sized baked potatoes with butter, grated cheddar, sour cream & your choice of one chopped bar-b-que meat.</p>
-                        <p class="price mt-2">Pick-Up or Delivery: $14.95 | Full-Service Catering: $18.95</p>
-                        <p class="text-xs text-gray-500 italic">*500 Guests or more please inquire</p>
+                    <!-- RIGHT COLUMN -->
+                    <div class="space-y-8">
+                        <!-- Order Online Button -->
+                        <button onclick="openOrderModal()" class="w-full bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-oswald font-bold text-2xl uppercase tracking-wide text-center py-6 px-4 transition-colors duration-200 cursor-pointer leading-tight">
+                            ORDER<br>ONLINE NOW
+                        </button>
+
+                        <!-- DESSERTS -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Desserts</h3>
+                            <div class="space-y-2 text-xs">
+                                <p><span class="font-bold">Banana Pudding</span></p>
+                                <p class="text-red-600 font-bold">Pick-Up & Delivery: $26.99 / pan | Full-Service: $2.75 / guest</p>
+                                <p class="mt-2"><span class="font-bold">Chocolate Chip Cookies</span> — $1.75 ea</p>
+                                <p><span class="font-bold">Homemade Brownie</span> — $2.75 ea</p>
+                                <p class="mt-2"><span class="font-bold">Peach or Cherry Cobbler</span></p>
+                                <p class="text-red-600 font-bold">Pick-Up & Delivery: $26.99 / pan | Full-Service: $2.75 / guest</p>
+                                <p class="mt-2"><span class="font-bold">Pecan Cobbler</span></p>
+                                <p class="text-red-600 font-bold">Pick-Up & Delivery: $32.99 / pan | Full-Service: $3.25 / guest</p>
+                                <p class="mt-2"><span class="font-bold">Seasonal Pies</span></p>
+                                <p class="text-gray-500 italic">Available during the Holidays. Please inquire for more info.</p>
+                            </div>
+                        </div>
+
+                        <!-- BEVERAGES -->
+                        <div>
+                            <h3 class="bg-red-600 text-white px-4 py-2 font-oswald font-bold text-lg uppercase tracking-wide text-center mb-4">Beverages</h3>
+                            <div class="space-y-3 text-xs">
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Iced Tea or Lemonade</p>
+                                    <p class="text-gray-600">Includes cups, sweetener, lemon wedges & ice</p>
+                                    <p class="text-red-600 font-bold mt-1">Pick-Up & Delivery: $10.99 / Gallon | Full-Service: $2.75 / guest</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Bottled Water or Canned Sodas</p>
+                                    <p class="text-gray-600">Coke, Diet Coke, Sprite & Dr Pepper</p>
+                                    <p class="text-red-600 font-bold mt-1">$1.75 ea</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">Draft Beer</p>
+                                    <p class="text-gray-600">(TABC Certified Bartenders required) Includes clear plastic cups. Full-Service Events only.</p>
+                                    <p class="text-red-600 font-bold mt-1">16 Gal. Bud Light & Miller Lite $255 ea | Shiner Bock $350 ea</p>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm uppercase">TABC Certified Bartenders</p>
+                                    <p class="text-red-600 font-bold mt-1">$35 / hour</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Info -->
+                        <div class="text-center pt-4 border-t border-gray-300">
+                            <p class="font-bold text-lg">Katy</p>
+                            <p class="text-sm">1711 S Mason Rd.</p>
+                            <p class="text-sm">Katy, TX 77450</p>
+                            <p class="text-lg font-bold text-red-600 mt-2">281-578-3800</p>
+                            <p class="text-xs text-gray-500 italic mt-2">*500 Guests or more please inquire</p>
+                        </div>
                     </div>
 
-                    <div class="menu-item">
-                        <h4>Holiday Dinner</h4>
-                        <p>Oven roasted turkey breast & ham. Comes with your choice of garlic mashed potatoes or whipped yams, cornbread dressing, southern turkey gravy, cranberry sauce & freshly baked yeast rolls</p>
-                        <p class="price mt-2">Pick-Up or Delivery: $18.95 | Full-Service Catering: $22.95</p>
-                        <p class="text-xs text-gray-500 italic">*500 Guests or more please inquire</p>
-                    </div>
-                </div>
-
-                <!-- Action Stations -->
-                <div class="menu-section">
-                    <h2>Action Stations & Hors d'oeuvres</h2>
-                    
-                    <div class="note">
-                        <p class="text-sm font-semibold mb-2">Our action stations & hors d'oeuvres are ideal for events when mingling with guests is important. Customize by selecting five or more of the following items.</p>
-                        <p class="text-sm font-semibold">Can't decide on Bar-B-Que or Tex-Mex...?</p>
-                        <p class="text-sm mt-2">Combine action stations options from our Tex-Mex experience for your guests!</p>
-                        <p class="text-sm mt-2 font-semibold">Includes staff, chafing dishes, serving platters & upgraded plates & silverware. Two Hour Serve Time. Please contact our catering consultants for more info & pricing.</p>
-                    </div>
-
-                    <h3>Action Stations</h3>
-                    <ul class="space-y-2 ml-4">
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Cocktail Fajitas</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Chicken & Beef Quesadillas</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Chile con Queso, Red Salsa, Green Sauce & Chips</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Shrimp Brochette</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Chicken Diablo</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Shrimp Campechana</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Pork Tenderloin</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Baby Back Ribs</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Texas Hushpuppies</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Shrimp Poppers</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Boneless Chicken Bites</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Mini Bar-B-Que Meatballs</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Cheese & Crackers</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Assortment of Fruit & Veggies</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Brisket & Turkey Sliders</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Mashed Potato Bar</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-red-600 mt-1">◆</span>
-                            <span>Brisket Mac & Cheese Bar</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Appetizer Trays -->
-                <div class="menu-section">
-                    <h2>Appetizer Trays</h2>
-
-                    <div class="menu-item">
-                        <h4>Veggie Tray</h4>
-                        <p>Cauliflowerets, Baby Carrots, Broccoli, Cucumbers, Cherry Tomatoes & Creamy Ranch Dip (serves approximately 25 guests) $75</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Cheese Cubes & Cracker Tray</h4>
-                        <p>Cheddar, Swiss & Pepper Jack Cubes with an assortment of crackers (serves approximately 35 guests) $75</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Fresh Fruit Tray</h4>
-                        <p>Red & Green Grapes, Strawberries & Pineapple (serves approximately 25 guests) $75</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Texas Hushpuppies</h4>
-                        <p>Chopped Brisket, Bar-B-Que Sauce & Pepper Jack Cheese battered & deep fried. Ranch for dipping. (35 pcs) $115</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Jalapeño Shrimp Poppers</h4>
-                        <p>Pickled jalapeños stuffed with jumbo Gulf shrimp & pepper jack cheese, battered & fried. Ranch for dipping. (30 pcs) $125</p>
-                    </div>
-                </div>
-
-                <!-- Individually Boxed Meals -->
-                <div class="menu-section">
-                    <h2>Individually Boxed Bar-B-Que Meals</h2>
-
-                    <div class="menu-item">
-                        <h4>Boxed Lunch</h4>
-                        <p>Bar-B-Que Sandwich (choice of meat), Chips & a Chocolate Chip Cookie. Includes fixings & napkins.</p>
-                        <p class="price mt-2">Pick-Up or Delivery: $14.95</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Two Meat Combo</h4>
-                        <p>Your choice of 2 meats & 2 sides. Includes pickles, onions, bar-b-que sauce, bread & plasticware.</p>
-                        <p class="price mt-2">Pick-Up or Delivery: $19.75</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Three Meat Combo</h4>
-                        <p>Your choice of 3 meats & 2 sides. Includes pickles, onions, bar-b-que sauce, bread & plasticware.</p>
-                        <p class="price mt-2">Pick-Up or Delivery: $21.75</p>
-                    </div>
-                </div>
-
-                <!-- Desserts -->
-                <div class="menu-section">
-                    <h2>Desserts</h2>
-
-                    <div class="menu-item">
-                        <h4>Banana Pudding</h4>
-                        <p class="price">Pick-Up & Delivery: $26.99 / pan | Full-Service Catering: $2.75 / guest</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Chocolate Chip Cookies</h4>
-                        <p class="price">$1.75 ea</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Homemade Brownie</h4>
-                        <p class="price">$2.75 ea</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Peach or Cherry Cobbler</h4>
-                        <p class="price">Pick-Up & Delivery: $26.99 / pan | Full-Service Catering: $2.75 / guest</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Pecan Cobbler</h4>
-                        <p class="price">Pick-Up & Delivery: $32.99 / pan | Full-Service Catering: $3.25 / guest</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Seasonal Pies</h4>
-                        <p>Available during the Holidays. Please inquire for more info.</p>
-                    </div>
-                </div>
-
-                <!-- Beverages -->
-                <div class="menu-section">
-                    <h2>Beverages</h2>
-
-                    <div class="menu-item">
-                        <h4>Iced Tea or Lemonade</h4>
-                        <p>Includes cups, sweetener, lemon wedges & ice</p>
-                        <p class="price mt-2">Pick-Up & Delivery: $10.99 / Gallon | Full-Service Catering: Combination $2.75 / guest</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Bottled Water or Canned Sodas</h4>
-                        <p>Coke, Diet Coke, Sprite & Dr Pepper</p>
-                        <p class="price mt-2">$1.75 ea</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>Draft Beer</h4>
-                        <p>(TABC Certified Bartenders are required)</p>
-                        <p>Includes clear plastic cups. Full-Service Events only.</p>
-                        <p class="price mt-2">16 Gal. Bud Light & Miller Lite $255 ea | Shiner Bock $350 ea</p>
-                    </div>
-
-                    <div class="menu-item">
-                        <h4>TABC Certified Bartenders</h4>
-                        <p class="price">$35 / hour.</p>
-                    </div>
-                </div>
-
-                <div class="menu-section bg-white rounded-lg p-6 shadow-md border-l-4 border-red-600">
-                    <p class="text-xs uppercase tracking-widest text-red-700 font-bold mb-2">Customer review</p>
-                    <blockquote class="text-gray-700 italic leading-relaxed">
-                        "What really stood out to me was the consistency in the quality of the food. Every dish was prepared with care and attention to detail. The portions were generous, and the prices were reasonable, making it a great value for the money."
-                    </blockquote>
-                    <p class="mt-3 text-sm text-gray-600">- James Bentivegna</p>
-                    <a href="reviews.html#portions-value-reviews" class="mt-2 inline-block text-sm text-red-700 font-semibold hover:text-red-800">Read the full portions and value review</a>
                 </div>
 
                 <!-- Booking Form Section -->
@@ -1185,5 +1119,10 @@
             return false;
         }
     </script>
-</body>
-</html>
+
+    <!-- Sticky Order CTA -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="openOrderModal()" class="btn-modern block px-6 py-4 text-white font-oswald font-bold uppercase tracking-wider rounded-full animate-pulse-glow shadow-2xl text-center">
+            Order Online
+        </button>
+    </div>

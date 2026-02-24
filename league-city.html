@@ -98,6 +98,17 @@
         .animate-scale-in {
             animation: scaleIn 0.2s ease-out;
         }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(204, 0, 0, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(204, 0, 0, 0.8), 0 0 60px rgba(204, 0, 0, 0.4); }
+        }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
+        .btn-modern {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #cc0000 0%, #880000 100%);
+        }
     </style>
 </head>
 <body class="bg-gray-100 overflow-x-hidden min-h-screen flex flex-col">
@@ -177,13 +188,6 @@
         <!-- Page Hero Banner -->
         <section class="relative w-full overflow-hidden">
             <img src="images/DRIVETHROUGH-OPEN.jpg" alt="Red River BBQ & Burger League City" class="w-full h-[260px] md:h-[420px] object-cover" />
-            <div class="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
-            <div class="absolute inset-0 flex items-end md:items-center justify-center">
-                <div class="text-center pb-6 md:pb-0">
-                    <h1 class="text-white text-3xl md:text-5xl font-oswald font-black uppercase tracking-widest">League City, TX</h1>
-                    <p class="text-white/80 mt-2">Red River BBQ & Burger</p>
-                </div>
-            </div>
         </section>
 
         <!-- Location Content Grid -->
@@ -395,5 +399,12 @@
         document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && body.classList.contains('mobile-menu-active')) closeMobileMenu(); });
         window.addEventListener('resize', () => { if (window.innerWidth >= 768 && body.classList.contains('mobile-menu-active')) closeMobileMenu(); });
     </script>
+
+    <!-- Sticky Order CTA -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="openOrderModal()" class="btn-modern block px-6 py-4 text-white font-oswald font-bold uppercase tracking-wider rounded-full animate-pulse-glow shadow-2xl text-center">
+            Order Online
+        </button>
+    </div>
 </body>
 </html>

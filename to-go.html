@@ -104,6 +104,11 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(204, 0, 0, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(204, 0, 0, 0.8), 0 0 60px rgba(204, 0, 0, 0.4); }
+        }
+        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
         .btn-modern {
             position: relative;
             overflow: hidden;
@@ -455,24 +460,12 @@
 
     <main class="flex-grow">
         <!-- HERO SECTION -->
-        <section class="relative h-[400px] md:h-[700px] w-full overflow-hidden">
+        <section class="relative w-full h-[300px] md:h-[620px] overflow-hidden">
             <img 
                 src="images/DRIVETHROUGH-OPEN.jpg" 
                 alt="Red River BBQ & Burger To-Go Menu" 
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover object-left"
             />
-            <div class="absolute inset-0 bg-black/30"></div>
-            
-            <div class="absolute inset-0 flex items-center justify-center text-center px-4">
-                <div class="max-w-4xl mx-auto">
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-oswald font-bold text-white mb-4">
-                        TO-GO MENU
-                    </h1>
-                    <p class="text-lg md:text-xl text-gray-300">
-                        Quick & Convenient Takeout Options
-                    </p>
-                </div>
-            </div>
         </section>
 
         <!-- TO-GO MENU CONTENT -->
@@ -880,5 +873,10 @@
             setTimeout(revealOnScroll, 100);
         });
     </script>
-</body>
-</html>
+
+    <!-- Sticky Order CTA -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <button onclick="openOrderModal()" class="btn-modern block px-6 py-4 text-white font-oswald font-bold uppercase tracking-wider rounded-full animate-pulse-glow shadow-2xl text-center">
+            Order Online
+        </button>
+    </div>
