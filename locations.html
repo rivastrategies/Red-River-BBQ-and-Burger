@@ -1,4 +1,4 @@
-
+﻿
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -272,7 +272,7 @@
                     <a href="index.html" class="transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]">
                         <img src="images/BBQ BURGER UPSCALE trans.png" alt="Red River BBQ & Burger - League City" class="h-24 md:h-28 w-auto" />
                     </a>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">League City TX</p>
+                    <p class="text-xs text-gray-200 mt-2 uppercase tracking-wide">League City TX</p>
                 </div>
 
                 <!-- Brand League City TX -->
@@ -280,7 +280,7 @@
                     <div class="transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(0,167,157,0.6)]">
                         <img src="images/brand.png" alt="Location - League City TX" class="h-24 md:h-28 w-auto" />
                     </div>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">League City TX</p>
+                    <p class="text-xs text-gray-200 mt-2 uppercase tracking-wide">League City TX</p>
                 </div>
 
                 <!-- Brand Richmond TX -->
@@ -288,7 +288,7 @@
                     <a href="#" class="transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(0,167,157,0.6)]">
                         <img src="images/brand.png" alt="Location - Richmond TX" class="h-24 md:h-28 w-auto" />
                     </a>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Richmond TX</p>
+                    <p class="text-xs text-gray-200 mt-2 uppercase tracking-wide">Richmond TX</p>
                 </div>
 
                 <!-- BBQ Burger Upscale Katy TX -->
@@ -296,7 +296,7 @@
                     <a href="#" class="transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]">
                         <img src="images/BBQ BURGER UPSCALE trans.png" alt="BBQ Burger Upscale - Katy TX" class="h-24 md:h-28 w-auto" />
                     </a>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Katy TX</p>
+                    <p class="text-xs text-gray-200 mt-2 uppercase tracking-wide">Katy TX</p>
                 </div>
 
                 <!-- Kiersh Co -->
@@ -328,9 +328,9 @@
         </div>
 
         <!-- Copyright -->
-        <div class="mt-12 text-center text-xs text-black uppercase tracking-widest">
+        <div class="mt-12 text-center text-xs text-white uppercase tracking-widest">
             &copy; 2026 Red River BBQ & Burger. All Rights Reserved.
-            <p class="mt-2 text-black normal-case tracking-normal">Made with <span class="text-red-500">♥</span> in Texas | Riva Strategies</p>
+            <p class="mt-2 text-gray-300 normal-case tracking-normal">Made with <span class="text-red-500">♥</span> in Texas | <a href="https://rivastrategies.com" target="_blank" rel="noopener noreferrer" class="hover:underline">Riva Strategies</a></p>
         </div>
     </footer>
 
@@ -365,10 +365,6 @@
         </div>
     </div>
 
-    <!-- Scroll to top button -->
-    <button id="scroll-to-top" class="fixed bottom-8 right-4 md:right-8 w-12 h-12 bg-gradient-to-br from-red-600 to-red-800 text-white rounded-full shadow-lg hover:shadow-red-500/50 transition-all duration-300 opacity-0 pointer-events-none translate-y-4 flex items-center justify-center hover:scale-110 z-50" title="Go to top">
-        <i data-lucide="chevron-up" class="w-6 h-6"></i>
-    </button>
 
     <!-- Scripts (reuse from main page, safe without hero) -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -391,17 +387,6 @@
             if (e.key === 'Escape') closeOrderModal();
         });
 
-        const scrollBtn = document.getElementById('scroll-to-top');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                scrollBtn.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
-                scrollBtn.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
-            } else {
-                scrollBtn.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
-                scrollBtn.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
-            }
-        });
-        scrollBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
         // Mobile menu toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');

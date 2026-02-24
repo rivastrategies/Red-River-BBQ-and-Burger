@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -565,18 +565,31 @@
 
     <main class="flex-grow">
         <!-- HERO SECTION -->
-        <section class="relative w-full h-[300px] md:h-[620px] overflow-hidden">
-            <img 
-                src="images/Screenshot 2026-02-22 220656.png" 
-                alt="Red River BBQ & Burger Menu" 
-                class="md:hidden w-full h-full object-cover object-left"
-            />
-            <img 
-                src="images/DRIVETHROUGH-OPEN.jpg" 
-                alt="Red River BBQ & Burger Menu" 
-                class="hidden md:block w-full h-full object-cover object-left"
-            />
+        <section class="relative w-full h-[300px] md:h-[620px] overflow-hidden" id="menu-hero-carousel">
+            <div class="carousel-track absolute inset-0 flex transition-transform duration-700 ease-in-out" id="menu-carousel-track">
+                <img src="images/c814fcbf-e0a2-4ccd-b558-f613714e37ca-retina-large.avif" alt="Red River BBQ & Burger Menu" class="w-full h-full object-cover object-center flex-shrink-0" />
+                <img src="images/53ce6349-50f6-4f37-b5e4-412f2c969cc6-retina-large.avif" alt="Red River BBQ & Burger Menu" class="w-full h-full object-cover object-center flex-shrink-0" />
+            </div>
+            <!-- Dots -->
+            <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white opacity-100 transition-opacity" data-carousel="menu-carousel-track" data-index="0"></button>
+                <button class="carousel-dot w-2.5 h-2.5 rounded-full bg-white opacity-50 transition-opacity" data-carousel="menu-carousel-track" data-index="1"></button>
+            </div>
         </section>
+        <script>
+        (function(){
+            const track = document.getElementById('menu-carousel-track');
+            const dots = document.querySelectorAll('[data-carousel="menu-carousel-track"]');
+            let current = 0;
+            function goTo(i){
+                current = i;
+                track.style.transform = 'translateX(-' + (100 * i) + '%)';
+                dots.forEach((d,idx) => d.style.opacity = idx === i ? '1' : '0.5');
+            }
+            dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.index)));
+            setInterval(() => goTo((current + 1) % 2), 4000);
+        })();
+        </script>
 
         <!-- MENU CONTENT -->
         <section class="py-12 px-4 bg-white" id="dine-in-menu">
@@ -899,7 +912,7 @@
                     <a href="index.html" class="transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]">
                         <img src="images/BBQ BURGER UPSCALE trans.png" alt="Red River BBQ & Burger - League City" class="h-24 md:h-28 w-auto" />
                     </a>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">League City TX</p>
+                    <p class="text-xs text-gray-200 mt-2 uppercase tracking-wide">League City TX</p>
                 </div>
 
                 <!-- Brand League City TX -->
@@ -907,7 +920,7 @@
                     <div class="transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(0,167,157,0.6)]">
                         <img src="images/brand.png" alt="Location - League City TX" class="h-24 md:h-28 w-auto" />
                     </div>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">League City TX</p>
+                    <p class="text-xs text-gray-200 mt-2 uppercase tracking-wide">League City TX</p>
                 </div>
 
                 <!-- Brand Richmond TX -->
@@ -915,7 +928,7 @@
                     <a href="#" class="transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(0,167,157,0.6)]">
                         <img src="images/brand.png" alt="Location - Richmond TX" class="h-24 md:h-28 w-auto" />
                     </a>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Richmond TX</p>
+                    <p class="text-xs text-gray-200 mt-2 uppercase tracking-wide">Richmond TX</p>
                 </div>
 
                 <!-- BBQ Burger Upscale Katy TX -->
@@ -923,7 +936,7 @@
                     <a href="#" class="transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_30px_rgba(220,38,38,0.5)]">
                         <img src="images/BBQ BURGER UPSCALE trans.png" alt="BBQ Burger Upscale - Katy TX" class="h-24 md:h-28 w-auto" />
                     </a>
-                    <p class="text-xs text-gray-400 mt-2 uppercase tracking-wide">Katy TX</p>
+                    <p class="text-xs text-gray-200 mt-2 uppercase tracking-wide">Katy TX</p>
                 </div>
 
                 <!-- Kiersh Co -->
@@ -955,9 +968,9 @@
         </div>
 
         <!-- Copyright -->
-        <div class="mt-12 text-center text-xs text-black uppercase tracking-widest">
+        <div class="mt-12 text-center text-xs text-white uppercase tracking-widest">
             &copy; 2026 Red River BBQ & Burger. All Rights Reserved.
-            <p class="mt-2 text-black normal-case tracking-normal">Made with <span class="text-red-500">♥</span> in Texas | Riva Strategies</p>
+            <p class="mt-2 text-gray-300 normal-case tracking-normal">Made with <span class="text-red-500">♥</span> in Texas | <a href="https://rivastrategies.com" target="_blank" rel="noopener noreferrer" class="hover:underline">Riva Strategies</a></p>
         </div>
     </footer>
 
