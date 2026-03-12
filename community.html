@@ -505,7 +505,7 @@
 
                 <!-- HTML Form -->
                 <div class="reveal max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-                    <form id="spiritDaysForm" method="POST" action="#">
+                    <form id="spiritDaysForm" method="POST" action="https://formspree.io/f/xyknjnjk">
                         <!-- ORGANIZATION INFORMATION -->
                         <div class="form-section" style="margin-bottom: 2rem;">
                             <div style="font-size: 1.25rem; font-weight: bold; color: #333; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid #cc0000;" class="form-section-title">Organization Information</div>
@@ -593,8 +593,9 @@
 
                         <!-- SUBMIT BUTTON -->
                         <div style="text-align: center; padding-top: 1.5rem; border-top: 1px solid #ddd;">
-                            <button style="background: linear-gradient(135deg, #cc0000 0%, #880000 100%); color: white; padding: 0.875rem 2rem; font-size: 1rem; font-weight: bold; border: none; border-radius: 0.375rem; cursor: pointer; text-transform: uppercase; transition: all 0.3s ease;" type="submit" class="btn-modern">Submit Application</button>
+                            <button id="spiritDaysSubmitButton" style="background: linear-gradient(135deg, #cc0000 0%, #880000 100%); color: white; padding: 0.875rem 2rem; font-size: 1rem; font-weight: bold; border: none; border-radius: 0.375rem; cursor: pointer; text-transform: uppercase; transition: all 0.3s ease;" type="submit" class="btn-modern">Submit Application</button>
                         </div>
+                        <p id="spiritDaysFormStatus" class="hidden text-center text-sm font-semibold rounded-lg px-4 py-3 mt-4"></p>
                     </form>
                 </div>
             </div>
@@ -856,6 +857,65 @@
         // Trigger reveal for elements already in view
         document.addEventListener('DOMContentLoaded', () => {
             setTimeout(revealOnScroll, 100);
+        });
+
+        // ===== Spirit Days Form Submission =====
+        document.getElementById('spiritDaysForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const form = this;
+            const status = document.getElementById('spiritDaysFormStatus');
+            const submitButton = document.getElementById('spiritDaysSubmitButton');
+            const originalButtonText = submitButton ? submitButton.textContent : '';
+
+            const showStatus = (message, isError) => {
+                if (!status) {
+                    return;
+                }
+                status.textContent = message;
+                status.classList.remove('hidden', 'text-green-700', 'bg-green-50', 'border', 'border-green-200', 'text-red-700', 'bg-red-50', 'border-red-200');
+                if (isError) {
+                    status.classList.add('text-red-700', 'bg-red-50', 'border', 'border-red-200');
+                } else {
+                    status.classList.add('text-green-700', 'bg-green-50', 'border', 'border-green-200');
+                }
+            };
+
+            if (status) {
+                status.classList.add('hidden');
+                status.textContent = '';
+            }
+
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.classList.add('opacity-60', 'cursor-not-allowed');
+                submitButton.textContent = 'Sending...';
+            }
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Formspree submission failed');
+                }
+
+                showStatus('Thank you for your application! Our team will follow up shortly.', false);
+                form.reset();
+            } catch (error) {
+                showStatus('Unable to send your application right now. Please try again in a moment.', true);
+            } finally {
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.classList.remove('opacity-60', 'cursor-not-allowed');
+                    submitButton.textContent = originalButtonText;
+                }
+            }
         });
     </script>
 
