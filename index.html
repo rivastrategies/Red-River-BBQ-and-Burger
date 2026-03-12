@@ -977,7 +977,7 @@
 
             <!-- Form Content -->
             <div class="p-6">
-                <form id="contactForm" class="space-y-4">
+                <form id="contactForm" action="https://formspree.io/f/mdawzwko" method="POST" class="space-y-4">
                     <div>
                         <label for="contactName" class="block text-sm font-bold text-gray-700 mb-1">Name *</label>
                         <input type="text" id="contactName" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" />
@@ -995,13 +995,14 @@
                         <textarea id="contactMessage" name="message" required rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"></textarea>
                     </div>
                     <div class="flex gap-3">
-                        <button type="submit" class="flex-1 bg-[#cc0000] hover:bg-[#880000] text-white font-oswald font-bold uppercase px-6 py-3 rounded-lg transition-colors">
+                        <button id="contactSubmitButton" type="submit" class="flex-1 bg-[#cc0000] hover:bg-[#880000] text-white font-oswald font-bold uppercase px-6 py-3 rounded-lg transition-colors">
                             Send Message
                         </button>
                         <button type="button" onclick="closeContactModal()" class="px-6 py-3 border-2 border-gray-300 text-gray-700 font-oswald font-bold uppercase rounded-lg hover:bg-gray-50 transition-colors">
                             Cancel
                         </button>
                     </div>
+                    <p id="contactFormError" class="hidden text-sm font-semibold text-red-700 bg-red-50 border border-red-200 rounded-lg px-3 py-2"></p>
                 </form>
                 <div id="contactFormSuccess" class="hidden text-center py-8">
                     <div class="text-green-600 mb-3">
@@ -1043,12 +1044,17 @@
                 // Reset form
                 const form = document.getElementById('contactForm');
                 const success = document.getElementById('contactFormSuccess');
+                const error = document.getElementById('contactFormError');
                 if (form) {
                     form.reset();
                     form.classList.remove('hidden');
                 }
                 if (success) {
                     success.classList.add('hidden');
+                }
+                if (error) {
+                    error.classList.add('hidden');
+                    error.textContent = '';
                 }
                 // Re-initialize icons after modal opens
                 setTimeout(() => lucide.createIcons(), 100);
@@ -1072,27 +1078,52 @@
         document.addEventListener('DOMContentLoaded', function() {
             const contactForm = document.getElementById('contactForm');
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+                contactForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
-                    
-                    // Get form data
-                    const formData = {
-                        name: document.getElementById('contactName').value,
-                        email: document.getElementById('contactEmail').value,
-                        phone: document.getElementById('contactPhone').value,
-                        message: document.getElementById('contactMessage').value
-                    };
-                    
-                    // Here you would normally send the data to your server
-                    // For now, we'll just show the success message
-                    console.log('Contact form submitted:', formData);
-                    
-                    // Show success message
-                    document.getElementById('contactForm').classList.add('hidden');
-                    document.getElementById('contactFormSuccess').classList.remove('hidden');
-                    
-                    // Re-initialize icons
-                    lucide.createIcons();
+
+                    const errorBox = document.getElementById('contactFormError');
+                    const submitButton = document.getElementById('contactSubmitButton');
+
+                    if (errorBox) {
+                        errorBox.classList.add('hidden');
+                        errorBox.textContent = '';
+                    }
+
+                    if (submitButton) {
+                        submitButton.disabled = true;
+                        submitButton.classList.add('opacity-60', 'cursor-not-allowed');
+                        submitButton.textContent = 'Sending...';
+                    }
+
+                    try {
+                        const response = await fetch(contactForm.action, {
+                            method: 'POST',
+                            body: new FormData(contactForm),
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error('Submission failed');
+                        }
+
+                        // Show success message without redirecting away from the modal.
+                        document.getElementById('contactForm').classList.add('hidden');
+                        document.getElementById('contactFormSuccess').classList.remove('hidden');
+                        lucide.createIcons();
+                    } catch (error) {
+                        if (errorBox) {
+                            errorBox.textContent = 'Unable to send your message right now. Please try again in a moment.';
+                            errorBox.classList.remove('hidden');
+                        }
+                    } finally {
+                        if (submitButton) {
+                            submitButton.disabled = false;
+                            submitButton.classList.remove('opacity-60', 'cursor-not-allowed');
+                            submitButton.textContent = 'Send Message';
+                        }
+                    }
                 });
             }
         });
