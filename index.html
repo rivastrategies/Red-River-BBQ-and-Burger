@@ -697,6 +697,7 @@
                                 <a href="#" onclick="openOrderModal(); return false;" class="text-xs hover:text-red-600 transition-colors bg-gray-100 hover:bg-red-50 px-3 py-1.5 rounded-full">Order</a>
                                 <a href="./careers.html" class="text-xs hover:text-red-600 transition-colors bg-gray-100 hover:bg-red-50 px-3 py-1.5 rounded-full">Careers</a>
                                 <a href="reviews.html" class="text-xs hover:text-red-600 transition-colors bg-gray-100 hover:bg-red-50 px-3 py-1.5 rounded-full">⭐ Customer Reviews</a>
+                                <button onclick="openContactModal(); return false;" class="text-xs hover:text-red-600 transition-colors bg-gray-100 hover:bg-red-50 px-3 py-1.5 rounded-full border-none cursor-pointer">Questions or Concerns?</button>
                             </div>
                         </div>
                     </div>
@@ -957,6 +958,65 @@
         </div>
     </div>
 
+    <!-- Contact Modal -->
+    <div id="contactModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <!-- Backdrop -->
+        <div class="fixed inset-0 bg-black/50 z-40" onclick="closeContactModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="bg-white rounded-lg shadow-2xl max-w-md w-full z-50 animate-scale-in">
+            <!-- Header -->
+            <div class="bg-[#cc0000] px-6 py-4 flex justify-between items-center rounded-t-lg">
+                <h2 class="text-white font-oswald font-bold text-2xl uppercase">
+                    Questions or Concerns?
+                </h2>
+                <button onclick="closeContactModal()" class="text-white hover:bg-[#880000] p-1 rounded transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Form Content -->
+            <div class="p-6">
+                <form id="contactForm" class="space-y-4">
+                    <div>
+                        <label for="contactName" class="block text-sm font-bold text-gray-700 mb-1">Name *</label>
+                        <input type="text" id="contactName" name="name" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" />
+                    </div>
+                    <div>
+                        <label for="contactEmail" class="block text-sm font-bold text-gray-700 mb-1">Email *</label>
+                        <input type="email" id="contactEmail" name="email" required class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" />
+                    </div>
+                    <div>
+                        <label for="contactPhone" class="block text-sm font-bold text-gray-700 mb-1">Phone</label>
+                        <input type="tel" id="contactPhone" name="phone" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" />
+                    </div>
+                    <div>
+                        <label for="contactMessage" class="block text-sm font-bold text-gray-700 mb-1">Message *</label>
+                        <textarea id="contactMessage" name="message" required rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 resize-none"></textarea>
+                    </div>
+                    <div class="flex gap-3">
+                        <button type="submit" class="flex-1 bg-[#cc0000] hover:bg-[#880000] text-white font-oswald font-bold uppercase px-6 py-3 rounded-lg transition-colors">
+                            Send Message
+                        </button>
+                        <button type="button" onclick="closeContactModal()" class="px-6 py-3 border-2 border-gray-300 text-gray-700 font-oswald font-bold uppercase rounded-lg hover:bg-gray-50 transition-colors">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+                <div id="contactFormSuccess" class="hidden text-center py-8">
+                    <div class="text-green-600 mb-3">
+                        <i data-lucide="check-circle" class="w-16 h-16 mx-auto"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-2">Message Sent!</h3>
+                    <p class="text-gray-600 mb-4">Thank you for contacting us. We'll get back to you soon.</p>
+                    <button onclick="closeContactModal()" class="bg-[#cc0000] hover:bg-[#880000] text-white font-bold px-6 py-2 rounded-lg transition-colors">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
@@ -975,10 +1035,65 @@
             modal.classList.add('hidden');
         }
 
+        // ===== Contact Modal Functions =====
+        function openContactModal() {
+            const modal = document.getElementById('contactModal');
+            if (modal) {
+                modal.classList.remove('hidden');
+                // Reset form
+                const form = document.getElementById('contactForm');
+                const success = document.getElementById('contactFormSuccess');
+                if (form) {
+                    form.reset();
+                    form.classList.remove('hidden');
+                }
+                if (success) {
+                    success.classList.add('hidden');
+                }
+                // Re-initialize icons after modal opens
+                setTimeout(() => lucide.createIcons(), 100);
+            }
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            if (modal) modal.classList.add('hidden');
+        }
+
         // Close modal when pressing Escape
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeOrderModal();
+                closeContactModal();
+            }
+        });
+
+        // Handle contact form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form data
+                    const formData = {
+                        name: document.getElementById('contactName').value,
+                        email: document.getElementById('contactEmail').value,
+                        phone: document.getElementById('contactPhone').value,
+                        message: document.getElementById('contactMessage').value
+                    };
+                    
+                    // Here you would normally send the data to your server
+                    // For now, we'll just show the success message
+                    console.log('Contact form submitted:', formData);
+                    
+                    // Show success message
+                    document.getElementById('contactForm').classList.add('hidden');
+                    document.getElementById('contactFormSuccess').classList.remove('hidden');
+                    
+                    // Re-initialize icons
+                    lucide.createIcons();
+                });
             }
         });
 
